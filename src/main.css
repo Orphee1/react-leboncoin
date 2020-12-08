@@ -108,7 +108,12 @@ p {
 
 .s-b {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+.s-b-left {
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
 }
 .fl-col {
@@ -116,6 +121,12 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.fl-col-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* justify-content: center; */
 }
 
 /* section */
