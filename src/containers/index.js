@@ -1,8 +1,8 @@
-import Offer from "./Offer"
-import Offers from "./Offers"
-import Publish from "./Publish"
-import SignIn from "./SignIn"
-import SignUp from "./SignUp"
+import Offer from "./offer"
+import Offers from "./offers"
+import Publish from "./publish"
+import SignIn from "./signIn"
+import SignUp from "./signUp"
 export {
         Offer, Offers, 
         Publish, SignIn, SignUp

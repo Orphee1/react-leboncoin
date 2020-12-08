@@ -1,25 +1,44 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import '../main.css'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { GiMagnifyingGlass } from 'react-icons/gi'
-import { GoThreeBars } from 'react-icons/go'
-import { BiBell, BiHeart, BiMessageDetail, BiUser } from 'react-icons/bi'
-import {BsPlusSquare} from "react-icons/bs"
+import { BiBell, BiHeart, BiMessageDetail, BiUser, BsPlusSquare, GiMagnifyingGlass, GoThreeBars, ImCross } from 'react-icons/all'
+
 import logo from '../icons/logo.png'
+import {ToggleContext} from "../context/toggleContext"
 
 const Header = () => {
+        const {toggleSearch, searchBoxOpen, toggleSide } = useContext(ToggleContext)
+       
   return (
     <Wrapper>
       <div className='section'>
         <div className='nav-header'>
-          <button className='btn'>
+          <button className='btn'
+        onClick={toggleSide}
+          >
             <GoThreeBars fontSize='2rem' style={{ color: '#FF6E13' }} />
           </button>
           <img src={logo} alt='logo Leboncoin' />
+          {searchBoxOpen ? (
+         <button className="btn" 
+          onClick={toggleSearch}
+         >
+          <ImCross 
+          fontSize='2rem' style={{ color: '#939ea9' }} 
+          />        
+         </button>         
+          ) : (
+   <button className='btn'
+     onClick={toggleSearch}
+   >
           <GiMagnifyingGlass 
           fontSize='2rem' style={{ color: '#FF6E13' }} 
           />
+          </button>
+          )}
+          
+       
         </div>
         <div className='nav-header975'>
           <ul className="s-b logo-nav" >
@@ -94,7 +113,6 @@ const Header = () => {
 export default Header
 
 const Wrapper = styled.header`
- 
   height: 4rem;
   background: var(--clr-white-1);
   box-shadow: var(--light-shadow);
@@ -104,6 +122,9 @@ const Wrapper = styled.header`
     align-items: baseline;
     justify-content: space-between;
     padding: 0.5rem 0 1.5rem 0;
+    button {
+             outline: none;
+    }
     img {
       width: 150px;
     }
