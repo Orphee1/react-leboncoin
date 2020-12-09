@@ -13,7 +13,7 @@ function App() {
       <Header />
       <Switch >
         <Route
-         path="/offer/"
+         path="/offer/:id"
         >
           <Offer 
           />

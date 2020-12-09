@@ -40,7 +40,9 @@ alert("Error fetching data")
 }
 
 useEffect(() => {
+        
 fetchData(); 
+// eslint-disable-next-line
 }, [])
 
         return (

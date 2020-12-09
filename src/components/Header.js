@@ -113,10 +113,12 @@ const Header = () => {
 export default Header
 
 const Wrapper = styled.header`
+  position: sticky; 
+  top: 0;
   height: 4rem;
   background: var(--clr-white-1);
   box-shadow: var(--light-shadow);
-
+z-index: 100;
   .nav-header {
     display: flex;
     align-items: baseline;
@@ -127,6 +129,7 @@ const Wrapper = styled.header`
     }
     img {
       width: 150px;
+       /* margin-bottom: 1.25rem; */
     }
   }
   .nav-header975 {

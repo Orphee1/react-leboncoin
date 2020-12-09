@@ -1,4 +1,5 @@
 import React, {useContext} from 'react'
+import {Link} from "react-router-dom"; 
 import "../main.css"
 import styled from "styled-components"
 import {Card} from "./index"
@@ -44,7 +45,7 @@ const OffersSmall = ({offers, isLoading}) => {
  id="" name=""
          checked></input>
 <ImStarFull 
-fontSize="0.6rem"
+fontSize="0.8rem"
 style={{color: "#FF6E13", marginRight: "1rem" }}
 />
          <span
@@ -63,10 +64,15 @@ style={{color: "#FF6E13", marginRight: "1rem" }}
  <div className="card-container">
 {offers.map((offer) => {
         return (
+                <Link
+                to={`/offer/${offer._id}`}
+                key={offer._id}
+                style={{width: "100%"}}
+                >
 <Card 
-key={offer._id}
 {...offer}
 />
+</Link>
          )
 })}
                                 </div>
