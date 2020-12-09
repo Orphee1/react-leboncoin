@@ -3,7 +3,8 @@ import "../main.css"
 import styled from "styled-components"
 
 
-const OffersLarge = () => {
+const OffersLarge = ({offers}) => {
+        console.log(offers);
         return (
                 <Wrapper>
                         <div>

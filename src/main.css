@@ -13,13 +13,15 @@ Variables
   --clr-grey-1: hsl(0, 0%, 28%); /* footer */
   --clr-grey-2: hsl(210, 11%, 62%); /* grey icons */
   /* 	#939ea9 */
-  --clr-grey-3: hsl(200, 16%, 96%); /* input */
+  --clr-grey-3: hsl(200, 10%, 79%);
+  /* 		#c4cbcf */
+  --clr-grey-4: hsl(200, 16%, 96%); /* input */
   --clr-white-1: #ffffff; /* header */
   --clr-white-2: hsl(0, 100%, 100%); /* body */
   --clr-black: #1a1a1a;
 
   --transition: all 0.3s linear;
-  --spacing: 0.1rem;
+  --spacing: 0.05rem;
   --radius: 0.25rem;
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -58,7 +60,7 @@ h2,
 h3,
 h4 {
   letter-spacing: var(--spacing);
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   line-height: 1.25;
   margin-bottom: 0.75rem;
 }
@@ -146,11 +148,8 @@ p {
   display: inline-block;
   padding: 0.25rem 0.5rem;
   border-radius: var(--radius);
-  color: var(--clr-white);
-  /* letter-spacing: var(--spacing); */
   border-color: transparent;
   cursor: pointer;
-  /* margin-top: 2rem; */
   font-size: 1.2rem;
 }
 
