@@ -4,10 +4,22 @@ import styled from "styled-components"
 
 const Searchbox = () => {
         return (
-                <div>
+                <Wrapper>
                         
-                </div>
+                </Wrapper>
         )
 }
 
 export default Searchbox
+
+const Wrapper = styled.div`
+width: 950px; 
+height: 10rem; 
+background: var(--clr-white-2); 
+border-radius: var(--radius); 
+box-shadow: var(--dark-shadow);
+margin: auto; 
+padding: 0.5rem; 
+z-index: 50; 
+
+`

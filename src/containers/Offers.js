@@ -9,6 +9,7 @@ import {OffersLarge, OffersSmall, SideBar, SideSearchBox} from "../components"
 
 const Offers = () => {
 const [offers, setOffers] = useState([])
+const [count, setCount] = useState()
 const [isLoading, setIsLoading] = useState(false)
 const [skip, setSkip] = useState(0)
 const limit = 10; 
@@ -27,9 +28,11 @@ const fetchData = async () => {
   })
 // console.log(response);
 if (response.data) {
-        const {offers} = response.data
+        const {offers, count} = response.data
 setOffers(offers);
+setCount(count);
 setIsLoading(false);
+// console.log(count);
 }
 
         } catch (error) {
@@ -55,7 +58,9 @@ fetchData();
                                  />
                                  
                     {searchBoxOpen ? (
-                            <SideSearchBox />
+                            <SideSearchBox 
+                            
+                            />
                     ) : (
 <OffersSmall 
 offers={offers}
@@ -71,7 +76,6 @@ isLoading={isLoading}
 <OffersLarge 
 offers={offers}
 isLoading={isLoading}
-
 />        
 </section>
                       
