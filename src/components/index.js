@@ -1,3 +1,4 @@
+import BigCard from "./BigCard"
 import Card from "./Card"
 import Footer from "./Footer"
 import Header from "./Header"
@@ -8,5 +9,5 @@ import SideBar from "./SideBar"
 import SideSearchBox from "./SideSearchBox"
 import ToggleBar from "./ToggleBar"
 export {
-        Card, Footer, Header, OffersLarge, OffersSmall, SearchBox, SideBar, SideSearchBox, ToggleBar
+        BigCard, Card, Footer, Header, OffersLarge, OffersSmall, SearchBox, SideBar, SideSearchBox, ToggleBar
 }

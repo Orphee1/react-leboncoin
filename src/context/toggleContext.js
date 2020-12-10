@@ -6,7 +6,7 @@ import React, {useState, createContext} from 'react'
  const ToggleProvider = ({children}) => {
         const [searchBoxOpen, setSearchBoxOpen] = useState(false)
         const [sideBarOpen, setSideBarOpen] = useState(false)
-        console.log(sideBarOpen)
+
         const toggleSearch = () => {  
         setSearchBoxOpen(!searchBoxOpen)
 }
