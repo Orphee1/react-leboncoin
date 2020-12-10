@@ -4,10 +4,10 @@ import "../main.css"
 import styled from "styled-components"
 import {Card, SearchBox} from "./index"
 import {ImStarFull} from "react-icons/im"
+import {FaChevronLeft, FaChevronRight} from "react-icons/fa"
 
-
-const OffersLarge = ({isLoading, offers}) => {
-        console.log(offers);
+const OffersLarge = ({count, isLoading, limit, offers, skipTab, setSkip}) => {
+        // console.log(offers);
         return (
                 <Wrapper>
                         <div
@@ -24,7 +24,7 @@ const OffersLarge = ({isLoading, offers}) => {
                         <section className="center fl-col">
                                 <div className="filters s-b">
 <div className="s-b">
-        <p>Annonces:</p> <span>count</span>
+        <p>Annonces:</p> {!isLoading &&   <span>{count}</span>}
         <input type="checkbox"/>
 </div>
 <div className="s-b">
@@ -72,6 +72,20 @@ style={{color: "#FF6E13", fontWeight: "bold" }}
         })}
 </div>
                                         )}
+                                </div>
+                                <div className="bottom-container fl-col">
+{!isLoading &&    <div className="skip-container s-b">
+        {skipTab.map((item, index) => {
+                
+                return <button className="btn"
+                key={index}
+                onClick={()=> {
+                       
+                        setSkip(index * limit)
+                }}
+        >{item}</button>
+        })}
+</div>      }
                                 </div>
 
                         </section>
@@ -129,7 +143,7 @@ margin: 0 auto;
 .offers-container {
 width: 100%;
         margin: auto; 
-
+ 
 }
 
 .card-container {
@@ -138,6 +152,20 @@ width: 70%;
 
 padding: 0 1rem 1rem 2rem; 
       
+}
+.bottom-container {
+        width: 100%;
+        height: 2.5rem ; 
+        padding-bottom: 1rem; 
+}
+
+.skip-container{
+width: auto; 
+        margin: auto; 
+button {
+        margin: 0 1rem; 
+        color: var(--clr-blue);
+}
 }
 }
 `

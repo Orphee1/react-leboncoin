@@ -5,11 +5,22 @@ import styled from "styled-components"
 import {Card} from "./index"
 import {ToggleContext} from "../context/toggleContext"
 import {ImLocation, ImStarFull} from "react-icons/im"
+import {FaChevronLeft, FaChevronRight} from "react-icons/fa"
 
 
-const OffersSmall = ({offers, isLoading}) => {
+const OffersSmall = ({count, limit, isLoading, offers, setSkip}) => {
          const {toggleSearch} = useContext(ToggleContext)
          console.log(offers);
+         let pageNumber = count / limit; 
+         // counter required at bottom to skip pages
+         const [counter, setCounter] = React.useState(1)
+       
+     
+         React.useEffect(() => {
+setSkip((counter-1) * limit)
+// eslint-disable-next-line
+         }, [counter])
+
         return (
                 <Wrapper>
                         <div className="button-container section">
@@ -77,7 +88,47 @@ style={{color: "#FF6E13", marginRight: "1rem" }}
 })}
                                 </div>
                                 )}
-                               
+                               <div className="bottom-container s-b">
+                                       <button className="btn"
+                                       onClick={() => {
+                                               if (counter > 1) {
+
+                                               }
+                                               setCounter(counter - 1)
+ 
+                                       }}
+                                       >
+<FaChevronLeft 
+fontSize="1.5rem"
+style={{color: "#939ea9"}}
+/>
+</button>
+<input type="number"
+placeholder={counter}
+value={counter}
+onChange={(event) => {
+        setCounter(event.target.value)
+}}
+/> /
+
+{!isLoading && <span>{Math.ceil(pageNumber)}</span>}
+
+<button className="btn"
+onClick={() => {
+        if (counter < pageNumber) {
+setCounter(counter + 1)
+
+        }
+}}
+>
+
+<FaChevronRight 
+fontSize="1.5rem"
+style={{color: "#939ea9"}}
+/>
+</button>
+
+                               </div>
                         </div>
                 </Wrapper>
         )
@@ -128,6 +179,7 @@ grid-row : 3/4;
 display: flex; 
 flex-direction: column;
 
+
 h3 {
         margin-left: 0.5rem;
 }
@@ -137,6 +189,30 @@ h3 {
         flex-direction: column; 
         align-items: flex-start;
         margin-left: 0.5rem; 
+}
+
+.bottom-container {
+        width: 60%; 
+        height: 3.5rem;
+        padding: 0.5rem 1rem 1rem 1rem;  
+        input {
+                height: 2rem; 
+                width: 4rem; 
+                background: var(--clr-white-1); 
+                border: 1px solid var(--clr-grey-2); 
+                border-radius: var(--radius); 
+                padding-left: 1rem
+                 
+        }
+        input::placeholder {
+                text-align: center;
+        }
+        button {
+                outline: none; 
+        }
+span {
+        color : var(--clr-grey-2);
+}
 }
 
 `

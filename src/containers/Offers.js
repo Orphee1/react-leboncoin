@@ -14,7 +14,6 @@ const [isLoading, setIsLoading] = useState(false)
 const [skip, setSkip] = useState(0)
 const limit = 10; 
 
-
         const {searchBoxOpen, sideBarOpen, toggleSide} = useContext(ToggleContext)
 
 const fetchData = async () => {
@@ -46,7 +45,14 @@ useEffect(() => {
         
 fetchData(); 
 // eslint-disable-next-line
-}, [])
+}, [skip])
+
+// create skip buttons bottom desktop screen 
+let skipTab = []
+for (let i = 0; i < count / 10; i++) {
+skipTab.push(i + 1); 
+}
+
 
         return (
                 <Wrapper>
@@ -59,12 +65,16 @@ fetchData();
                                  
                     {searchBoxOpen ? (
                             <SideSearchBox 
-                            
+                            count={count}
+                            isLoading={isLoading}
                             />
                     ) : (
 <OffersSmall 
-offers={offers}
+count={count}
+limit={limit}
 isLoading={isLoading}
+offers={offers}
+setSkip={setSkip}
  />
                     )}
 
@@ -74,8 +84,12 @@ isLoading={isLoading}
 
 <section className="page975">
 <OffersLarge 
-offers={offers}
+count={count}
 isLoading={isLoading}
+limit={limit}
+offers={offers}
+setSkip={setSkip}
+skipTab={skipTab}
 />        
 </section>
                       

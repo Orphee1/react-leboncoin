@@ -7,7 +7,9 @@ import {GiMagnifyingGlass } from "react-icons/gi"
 import {BsListCheck} from "react-icons/bs"
 import {AiFillPlusCircle} from "react-icons/ai"
 
-const SideSearchBox = () => {
+const SideSearchBox = ({count, isLoading}) => {
+
+        console.log(count)
         return (
                 <Wrapper>
                         <div className="first fl-col" >
@@ -130,7 +132,10 @@ style={{fontWeight: "bold"}}
                                 </div>
                         </div>
                        <footer>
-                               <button className="btn">Rechercher résultats</button>
+                               <button className="btn"> 
+                                      Rechercher {" "}
+                                      {!isLoading && `${count}  résultats`}  
+                        </button>
                        </footer>
                 </Wrapper>
         )
