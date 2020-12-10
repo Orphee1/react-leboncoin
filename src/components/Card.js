@@ -50,11 +50,12 @@ border: none;
 outline: none;
 .img-container {
 grid-column: 1/2; 
-
 img {
     width: 100%;
   height: 11rem;
   object-fit: cover;
+border-radius: var(--radius); 
+
 }
 }
 .info-container {

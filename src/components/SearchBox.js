@@ -13,7 +13,7 @@ const Searchbox = () => {
 export default Searchbox
 
 const Wrapper = styled.div`
-width: 950px; 
+width: 900px; 
 height: 10rem; 
 background: var(--clr-white-2); 
 border-radius: var(--radius); 
