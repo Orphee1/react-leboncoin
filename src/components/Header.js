@@ -1,16 +1,17 @@
 import React, {useContext} from 'react'
 import Cookie from "js-cookie";
 import '../main.css'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { BiBell, BiHeart, BiMessageDetail, BiUser, BsPlusSquare, GiMagnifyingGlass, GoThreeBars, ImCross } from 'react-icons/all'
 
 import logo from '../icons/logo.png'
 import {ToggleContext} from "../context/toggleContext"
 
-const Header = ({user, setUser}) => {
-  const token = Cookie.get("token");
+const Header = ({user, setUser, setModal}) => {
+  const token = Cookie.get("token")
         const {toggleSearch, searchBoxOpen, toggleSide } = useContext(ToggleContext)
+        const history = useHistory();
 
         const disconnect = () => {
            setUser({});
@@ -60,7 +61,15 @@ const Header = ({user, setUser}) => {
               </Link>
             </li>
             <li>
-              <button className='btn'>
+              <button className='btn'
+              onClick={() => {
+                if (token) {
+history.push("/publish/")
+                } else {
+                  setModal(true);
+                }
+              }}
+              >
                       <BsPlusSquare 
                       fontSize="2rem"
                       style={{color: "white", marginRight: "0.5rem"}}

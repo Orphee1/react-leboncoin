@@ -9,7 +9,11 @@ import user from "../icons/user.png"
 const BigCard = ({offer, productNumber}) => {
   // console.log(offer);
   console.log(productNumber);
-  const {category, created, creator, description, location, pictures, price, title} = offer; 
+  const {
+    // category, 
+    created, creator, description, 
+    // location, 
+    pictures, price, title} = offer; 
   return (
     <Wrapper>
       <section className="main fl-col">

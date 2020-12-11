@@ -4,7 +4,7 @@ import "../main.css"
 import styled from "styled-components"
 import {Card, SearchBox} from "./index"
 import {ImStarFull} from "react-icons/im"
-import {FaChevronLeft, FaChevronRight} from "react-icons/fa"
+
 
 const OffersLarge = ({count, isLoading, limit, offers, skipTab, setSkip}) => {
         // console.log(offers);
@@ -25,18 +25,26 @@ const OffersLarge = ({count, isLoading, limit, offers, skipTab, setSkip}) => {
                                 <div className="filters s-b">
 <div className="s-b">
         <p>Annonces:</p> {!isLoading &&   <span>{count}</span>}
-        <input type="checkbox"/>
+        <input type="checkbox"
+         readOnly
+        />
 </div>
 <div className="s-b">
          <p>Particuliers</p> <span>16</span>
-        <input type="checkbox"/>
+        <input type="checkbox"
+         readOnly
+        />
 </div>
 <div className="s-b">
          <p>Professionnels</p> <span>12</span>
-        <input type="checkbox"/>
+        <input type="checkbox"
+         readOnly
+        />
 </div>
 <div className="s-b">
-        <input type="checkbox"/>
+        <input type="checkbox"
+         readOnly
+        />
         <ImStarFull 
         fontSize="0.8rem"
 style={{color: "#FF6E13", marginRight: "1rem" }}

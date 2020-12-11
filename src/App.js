@@ -3,7 +3,7 @@ import "./main.css"
 import Cookie from "js-cookie";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {Offer, Offers, Publish, SignIn, SignUp} from "./containers"
-import {Footer, Header} from "./components"
+import {Footer, Header, Modal} from "./components"
 import {ToggleProvider} from "./context/toggleContext"
 
 
@@ -11,16 +11,22 @@ import {ToggleProvider} from "./context/toggleContext"
 function App() {
 const token = Cookie.get("token")
   const [user, setUser] = useState({token: token})
-  console.log(user);
+  const [modal, setModal] = useState(false);
+console.log(modal);
   
 
   return (
     <Router>
+             {modal && <Modal 
+              setModal={setModal}
+            />}
             <ToggleProvider >
       <Header 
       user={user}
       setUser={setUser}
+      setModal={setModal}
       />
+             
       <Switch >
         <Route 
         path="/user/sign_in"
@@ -35,6 +41,11 @@ const token = Cookie.get("token")
           <SignUp 
           setUser={setUser}
           />
+        </Route>
+        <Route
+        path="/publish/"
+        >
+          <Publish />
         </Route>
         <Route
          path="/offer/:id"

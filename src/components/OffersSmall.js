@@ -42,19 +42,25 @@ setSkip((counter-1) * limit)
                                 <div className="s-b">
  <input type="checkbox" 
  id="" name=""
-         checked></input>
+         checked
+         readOnly
+         />
          <span>Particuliers</span>
                                 </div>
 <div className="s-b">
     <input type="checkbox" 
  id="" name=""
-         checked></input>
+         checked
+         readOnly
+         />
          <span>Professionnels</span>
 </div>
      <div className="s-b">
          <input type="checkbox" 
  id="" name=""
-         checked></input>
+         checked
+         readOnly
+         />
 <ImStarFull 
 fontSize="0.8rem"
 style={{color: "#FF6E13", marginRight: "1rem" }}

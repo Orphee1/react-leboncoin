@@ -12,7 +12,7 @@ const SignUp = ({setUser}) => {
         const [password, setPassword] = useState("")
         const [confirmPassword, setConfirmPassword] = useState("")
         const [errorMessage, setErrorMessage] = useState(false)
-      const [isLoading, setIsLoading] = useState(false)
+//       const [isLoading, setIsLoading] = useState(false)
       const history = useHistory();
 
         let isOk = false;
@@ -23,7 +23,7 @@ isOk = true;
 
         const handleSubmit = async (e) => {
                 e.preventDefault()
-                setIsLoading(true);
+                // setIsLoading(true);
                 if (isOk) {
                         try {
 const response = await Axios.post("http://localhost:5000/api/user/sign_up", {
@@ -31,18 +31,19 @@ const response = await Axios.post("http://localhost:5000/api/user/sign_up", {
         email: email,
         password: password
 })
-console.log(response);
+// console.log(response);
 if (response.data.token) {
 const {token} = response.data;
 Cookies.set("token", token);
 setUser(response.data);
+//  setIsLoading(false);
 history.push("/");
 }
 
                         } catch(error) {
                                 console.log(error.message);
                                 alert("An error occured");
-                                setIsLoading(false);
+                                // setIsLoading(false);
                         }
 
                 } 
