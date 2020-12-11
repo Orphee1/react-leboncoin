@@ -1,27 +1,51 @@
 import React, {useState} from 'react'
+import Axios from "axios";
+import Cookies from "js-cookie"; 
+import {useHistory} from "react-router-dom";
 import "../main.css"
 import styled from "styled-components"
 import image from "../icons/signup-illustration.jpg"
 
-const SignUp = () => {
+const SignUp = ({setUser}) => {
         const [userName, setUserName] = useState("")
         const [email, setEmail] = useState("")
         const [password, setPassword] = useState("")
         const [confirmPassword, setConfirmPassword] = useState("")
         const [errorMessage, setErrorMessage] = useState(false)
+      const [isLoading, setIsLoading] = useState(false)
+      const history = useHistory();
 
         let isOk = false;
-if (password !== "" && email !== "" && userName !== "" && password === confirmPassword) {
+        let regex = /@/;
+if (password !== "" && email !== "" && email.match(regex) && userName !== "" && password === confirmPassword) {
 isOk = true;
 }
 
-        const handleSubmit = (e) => {
+        const handleSubmit = async (e) => {
                 e.preventDefault()
+                setIsLoading(true);
                 if (isOk) {
+                        try {
+const response = await Axios.post("http://localhost:5000/api/user/sign_up", {
+        username: userName,
+        email: email,
+        password: password
+})
+console.log(response);
+if (response.data.token) {
+const {token} = response.data;
+Cookies.set("token", token);
+setUser(response.data);
+history.push("/");
+}
 
-                } else {
+                        } catch(error) {
+                                console.log(error.message);
+                                alert("An error occured");
+                                setIsLoading(false);
+                        }
 
-                }
+                } 
         }
         return (
                 <Wrapper>
@@ -71,6 +95,9 @@ value={password}
                 onChange={(event) => {
                         setPassword(event.target.value)
                 }}
+                onFocus={(event) => {
+                        setErrorMessage(false)
+                }}
               />
                <label htmlFor="pass">Confirmez votre mot de passe</label>
               <input
@@ -83,9 +110,24 @@ value={confirmPassword}
                 onChange={(event) => {
                         setConfirmPassword(event.target.value)
                 }}
+                  onFocus={(event) => {
+                        setErrorMessage(false)
+                }}
+                onBlur={(event) => {
+                     
+                        if (password !== confirmPassword) {
+                                setErrorMessage(true);
+                        }
+                }}
               />
-            
+              {errorMessage &&    <p
+              className="alert"
+              >Les mots de passe saisis ne sont pas identiques</p>
+                     
+              }
+ 
             </div>
+           
             <button type="submit" className={isOk ? `btn buttonOk` : `btn button`}
             >
               Créer mon compte
@@ -121,11 +163,19 @@ align-items: center;
   max-width: 30rem;
 }
 .form-group {
+        position: relative;
          width: 100%;
         margin: 0 auto 1rem auto;
+        padding-bottom: 1rem;
         label {
                 font-weight: bold;
                 margin-bottom: 0.5rem; 
+        }
+        p {
+           position: absolute;
+           bottom: 0.5rem;
+                color: red; 
+                font-size: 0.8rem;
         }
 
 }

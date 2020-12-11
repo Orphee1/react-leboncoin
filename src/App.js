@@ -11,6 +11,7 @@ import {ToggleProvider} from "./context/toggleContext"
 function App() {
 const token = Cookie.get("token")
   const [user, setUser] = useState({token: token})
+  console.log(user);
   
 
   return (
@@ -31,7 +32,9 @@ const token = Cookie.get("token")
         <Route 
         path="/user/sign_up/"
         >
-          <SignUp />
+          <SignUp 
+          setUser={setUser}
+          />
         </Route>
         <Route
          path="/offer/:id"
