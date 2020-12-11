@@ -1,7 +1,7 @@
 import React from 'react'
 import "../main.css"
 import styled from "styled-components"
-import {FaChevronRight} from "react-icons/fa"; 
+import {FaChevronRight, FaRegClock} from "react-icons/fa"; 
 import {BiHeart} from "react-icons/bi"
 import user from "../icons/user.png"
 
@@ -22,13 +22,61 @@ const BigCard = ({offer, productNumber}) => {
 </div>
         </div>
         <div className="title fl-col-left">
-  <h3>{title}</h3>
+          <div className="s-b"
+          style={{width: "100%"}}
+          >
+
+                <h3>{title}</h3>
+              <div className="heart975 d-flex">
+  <BiHeart 
+  fontSize="1.5rem"
+  />
+</div>
+          </div>
   <h4
   style={{color: "#FF6E13"}}
   >{price} €</h4>
   <p>{created}</p>
         </div>
       </section>
+      <div className="description975">
+  <h4>Description</h4>
+  <p>{description}</p>
+      </div>
+      <aside className="seller975 fl-col">
+      <div className=" first s-b">
+<div className="s-b">
+  <img src={user} alt="icon-user"/>
+  <div className="fl-col-left">
+  <h4>{creator}</h4>
+
+  {productNumber > 1 ? (
+  <p>{productNumber} annonces</p>
+  ): (
+  <p>{productNumber} annonce</p>
+  )}
+
+  </div>
+</div>
+<FaChevronRight 
+fontSize="1.3rem"
+style={{color: "#939ea9"}}
+/>
+        </div>
+        <div className="left full-width"
+        style={{marginTop: "1rem"}}
+        >
+          <FaRegClock 
+          fontSize="1.2rem"
+          style={{color: "#939ea9", marginRight: "0.5rem"}}
+          />
+<p
+style={{fontSize: "0.8rem"}}
+>Répond généralement en une journée</p>
+        </div>
+        <button className="btn">Faire une offre</button>
+        <button className="btn">Envoyer un message</button>
+      </aside>
       <section className="second-container">
         <button className="btn">
           Faire une offre
@@ -56,7 +104,6 @@ style={{color: "#939ea9"}}
 <h4>Description</h4>
   <p>{description}</p>
         </div>
-
       </section>
     </Wrapper>
   )
@@ -77,9 +124,15 @@ height: 100%;
   align-self: flex-start;
   h4 {
     font-size: 1.25rem;
-  /* margin-bottom: 0.75rem; */
 }
  
+}
+.description975 {
+  display: none; 
+}
+.seller975 {
+  display: none; 
+
 }
 .img-container {
  width: 100%;
@@ -100,12 +153,16 @@ height: 100%;
   width: 40px; 
   height: 40px; 
   border-radius: 50%; 
-
+}
+.heart975 {
+  opacity: 0; 
+  
 }
  .title {
    width: 95%;
    padding: 1rem 0; 
 }
+
 .second-container {
   width: 100%; 
   grid-row: 2/3; 
@@ -142,13 +199,14 @@ margin-bottom: 1.5rem;
   }
 }
 
-@media screen and (min-width: 975px) {
+@media screen and (min-width: 1064px) {
 display: grid; 
 width: 100%; 
 height: 100%;
-grid-template-rows: 60vh 30vh;    
-grid-template-columns: 45vw 30vw;
-grid-row-gap: 1rem; 
+grid-template-rows: 65vh 1fr;    
+grid-template-columns: 50vw 30vw;
+grid-column-gap: 1.5rem; 
+grid-row-gap: 0.5rem; 
 
 .main {
   grid-row: 1/2; 
@@ -156,7 +214,7 @@ grid-row-gap: 1rem;
   width: 100%; 
   align-self: flex-start;
   img {
-    height: 22rem;
+    height: 20rem;
     border-radius: 0.25rem 0.25rem 0 0;
   }
 h4 {
@@ -167,11 +225,67 @@ h4 {
 .heart {
   display:none; 
 }
+.heart975 {
+opacity: 1;
+  background: var(--clr-white-1); 
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%; 
+box-shadow: var(--dark-shadow);  
+}
  .title {
+   width: 100%; 
    padding-bottom: 1rem; 
 border-bottom: 1px solid var(--clr-grey-3); 
 
  }
+ .description975 {
+   grid-row: 2/3; 
+   grid-column: 1/2; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start; 
+   padding-bottom: 1rem; 
+border-bottom: 1px solid var(--clr-grey-3); 
+  h4 {
+  margin-bottom: 0.75rem;
+}
+}
+.seller975 {
+   grid-row: 1/2; 
+   grid-column: 2/3;
+   align-self: flex-start;
+   justify-self: flex-start;
+   width: 90%; 
+   height: 19rem;
+display: flex; 
+padding: 1rem; 
+   border-radius: var(--radius);
+   box-shadow: var(--dark-shadow); 
+
+    img {
+    width: 50px; 
+    margin-right: 1rem; 
+  }
+  button {
+    width: 100%; 
+height: 2.6rem;
+color: white; 
+    border-radius: var(--radius);
+margin: 1rem auto; 
+ background: var(--clr-orange);
+  }
+  button:nth-child(3) {
+   background: var(--clr-blue);
+
+  } 
+
+}
+.first {
+  width: 100%; 
+     padding: 1rem 0; 
+  border-bottom: 1px solid var(--clr-grey-2);
+}
  .second-container {
   display: none; 
 }

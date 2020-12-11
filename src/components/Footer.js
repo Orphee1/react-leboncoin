@@ -40,7 +40,7 @@ display: flex;
 align-items: center; 
 justify-content: space-between;
 }
-@media (min-width: 975px) {
+@media (min-width: 1064px) {
 display: grid; 
 place-items: center; 
 height: 20rem; 

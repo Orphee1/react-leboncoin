@@ -60,7 +60,7 @@ min-height: calc(100vh - 4rem);
 .big-card-container {
         width: 100%;
 }
-@media screen and (min-width: 975px) {
+@media screen and (min-width: 1064px) {
 .big-card-container {
         width: 80%;
         margin: 3rem auto 1rem auto;

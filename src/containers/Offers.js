@@ -110,7 +110,7 @@ min-height: calc(100vh - 4rem);
         display: none;
 
 }
- @media (min-width: 975px) { 
+ @media (min-width: 1064px) { 
 .small-page {
 display: none;
 }

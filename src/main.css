@@ -79,7 +79,7 @@ span {
   font-size: 0.875rem;
 }
 
-@media screen and (min-width: 975px) {
+@media screen and (min-width: 1064px) {
   h1 {
     font-size: 4rem;
   }
@@ -89,10 +89,10 @@ span {
   h3 {
     font-size: 1.75rem;
   }
-  h4,
-  span {
+  h4 {
     font-size: 1rem;
   }
+
   body {
     font-size: 1rem;
   }
@@ -140,6 +140,10 @@ span {
   /* justify-content: center; */
 }
 
+.full-width {
+  width: 100%;
+}
+
 /* section */
 .section {
   width: 95vw;
@@ -147,7 +151,7 @@ span {
   /* max-width: var(--max-width); */
 }
 
-@media screen and (min-width: 975px) {
+@media screen and (min-width: 1064px) {
   .section {
     width: 80vw;
   }

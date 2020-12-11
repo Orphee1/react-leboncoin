@@ -79,7 +79,7 @@ svg {
     right: 1.5rem;
 }
 }
- @media (min-width: 975px) { 
+ @media (min-width: 1064px) { 
 
  }
 

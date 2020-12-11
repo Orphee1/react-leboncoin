@@ -19,7 +19,12 @@ const Header = () => {
           >
             <GoThreeBars fontSize='2rem' style={{ color: '#FF6E13' }} />
           </button>
+          <Link 
+          to="/"
+          >
+         
           <img src={logo} alt='logo Leboncoin' />
+           </Link>
           {searchBoxOpen ? (
          <button className="btn" 
           onClick={toggleSearch}
@@ -43,7 +48,9 @@ const Header = () => {
         <div className='nav-header975'>
           <ul className="s-b logo-nav" >
             <li>
+              <Link to="/" >
               <img src={logo} alt='logo Leboncoin' />
+              </Link>
             </li>
             <li>
               <button className='btn'>
@@ -135,7 +142,7 @@ z-index: 100;
   .nav-header975 {
     display: none;
   }
-  @media (min-width: 975px) {
+  @media (min-width: 1064px) {
     .nav-header {
       display: none;
     }
