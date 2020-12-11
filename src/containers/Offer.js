@@ -15,7 +15,8 @@ const Offer = () => {
 const fetchData = async () => {
         setIsLoading(true)
         try {
-const response = await Axios.get("http://localhost:5000/api/offer?id=" + id)
+// const response = await Axios.get("http://localhost:5000/api/offer?id=" + id)
+const response = await Axios.get("https://leboncoinhl.herokuapp.com/api/offer?id=" + id)
 // console.log(response);
 if (response.data) {
 setOffer(response.data[0]); 

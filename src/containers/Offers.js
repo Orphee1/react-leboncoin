@@ -21,7 +21,8 @@ const fetchData = async () => {
         setIsLoading(true)
         try {
   const response = await Axios.post(
-          'http://localhost:5000/api/offers/with-count/', {
+        //   'http://localhost:5000/api/offers/with-count/', {
+          'https://leboncoinhl.herokuapp.com/api/offers/with-count/', {
           skip: skip,
         limit: limit,
   })
