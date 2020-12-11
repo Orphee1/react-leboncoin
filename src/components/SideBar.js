@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom"; 
 import "../main.css"
 import styled from "styled-components"
 import { BiBell,  BiHeart, BiMessageDetail, BsPlusSquare, FaChevronRight, GiMagnifyingGlass, ImCross } from 'react-icons/all'
@@ -58,9 +59,14 @@ onClick={toggleSide}
                                 </div>
                                 <div className="bottom section">
 <div className="s-b-left">
+        <Link 
+        to="/user/sign_in"
+        style={{color: "#FF6E13"}} 
+        >
         <span
         style={{color: "#FF6E13"}}
         >Se connecter</span>
+        </Link>
 </div>
 <div className="b-bottom"></div>
 <div className="s-b">

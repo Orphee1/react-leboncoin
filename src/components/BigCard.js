@@ -105,6 +105,10 @@ style={{color: "#939ea9"}}
   <p>{description}</p>
         </div>
       </section>
+    <footer className="footer full-width d-flex blue" >
+      <button className="btn">Contacter</button>
+      <button className="btn">Faire une offre</button>
+    </footer>
     </Wrapper>
   )
 }
@@ -198,7 +202,31 @@ margin-bottom: 1.5rem;
     margin-bottom: 1rem; 
   }
 }
+.footer {
+  position: fixed; 
+  bottom: 0; 
+  z-index:  10; 
+height: 4.5rem;
+padding: 0.5rem 0 1rem 0;
+background: var(--clr-white-1);
+box-shadow: var(--dark-shadow);
+button {
+ color: var(--clr-blue); 
+ width: 45%;
+ height: 40px;
+ margin: 0 0.5rem; 
+ border: 1px solid var(--clr-blue);
+ border-radius: var(--radius);
+   background: var(--clr-white-1);
+}
+button:nth-child(2) {
+  height: 41px;
+  color: white; 
+   background: var(--clr-orange);
+   border: transparent; 
 
+  } 
+}
 @media screen and (min-width: 1064px) {
 display: grid; 
 width: 100%; 
@@ -289,7 +317,9 @@ margin: 1rem auto;
  .second-container {
   display: none; 
 }
- 
+ .footer {
+ display: none;  
+}
 }
 
 `

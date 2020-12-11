@@ -101,14 +101,19 @@ const Header = () => {
               </div>
             </li>
             <li>
-            
+              <Link 
+                to="/user/sign_in"
+                style={{color: "black"}}
+                >
               <div className='fl-col'>
                 <BiUser 
                  fontSize="2rem"
-                      style={{color: "black"}}
+                      style={{color: "#1a1a1a"}}
                 />
                 <span>Se connecter</span>
+               
               </div>
+               </Link>
             </li>
           </ul>
         </div>
