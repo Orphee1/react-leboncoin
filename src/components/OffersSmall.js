@@ -10,7 +10,7 @@ import {FaChevronLeft, FaChevronRight} from "react-icons/fa"
 
 const OffersSmall = ({count, limit, isLoading, offers, setSkip}) => {
          const {toggleSearch} = useContext(ToggleContext)
-         console.log(offers);
+        //  console.log(offers);
          let pageNumber = count / limit; 
          // counter required at bottom to skip pages
          const [counter, setCounter] = React.useState(1)

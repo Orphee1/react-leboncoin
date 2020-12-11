@@ -1,4 +1,5 @@
 import React, {useContext} from 'react'
+import Cookie from "js-cookie";
 import '../main.css'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
@@ -7,9 +8,15 @@ import { BiBell, BiHeart, BiMessageDetail, BiUser, BsPlusSquare, GiMagnifyingGla
 import logo from '../icons/logo.png'
 import {ToggleContext} from "../context/toggleContext"
 
-const Header = () => {
+const Header = ({user, setUser}) => {
+  const token = Cookie.get("token");
         const {toggleSearch, searchBoxOpen, toggleSide } = useContext(ToggleContext)
-       
+
+        const disconnect = () => {
+           setUser({});
+           Cookie.remove("token")                                 
+        }
+
   return (
     <Wrapper>
       <div className='section'>
@@ -100,7 +107,17 @@ const Header = () => {
                 <span>Messages</span>
               </div>
             </li>
-            <li>
+            <li>{user.token ? (
+<button className="btn fl-col" 
+onClick={disconnect}
+>
+                <BiUser 
+                 fontSize="2rem"
+                      style={{color: "#1a1a1a"}}
+                />
+                <span>Se déconnecter</span>
+</button>
+            ): (
               <Link 
                 to="/user/sign_in"
                 style={{color: "black"}}
@@ -114,6 +131,7 @@ const Header = () => {
                
               </div>
                </Link>
+                )}
             </li>
           </ul>
         </div>

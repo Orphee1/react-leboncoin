@@ -1,11 +1,48 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Axios from "axios";
-import {Link} from "react-router-dom"
+import Cookie from "js-cookie";
+import {Link, useHistory} from "react-router-dom"
 import "../main.css"
 import styled from "styled-components"
 
 
-const SignIn = () => {
+const SignIn = ({setUser}) => {
+        const [email, setEmail] = useState("")
+        const [password, setPassword] = useState("")
+        const [isLoading, setIsLoading] = useState(false)
+        const history = useHistory();
+
+const handleSubmit = async (e) => {
+        e.preventDefault()
+setIsLoading(true)
+
+try {
+const response = await Axios.post("http://localhost:5000/api/user/log_in", 
+{
+        email: email, 
+        password: password
+}
+)
+
+if (response.data) {
+// console.log(response.data);
+const {token} = response.data 
+Cookie.set("token", token);
+setUser(response.data);
+setIsLoading(false);
+history.push("/");
+}
+
+
+
+} catch (error) {
+console.log(error)
+alert("Error login")
+setIsLoading(false);
+}
+
+}
+
         return (
                 <Wrapper>
                         <section
@@ -18,28 +55,42 @@ const SignIn = () => {
           <p>Connectez-vous pour découvrir toutes nos fonctionnalités</p>
            </header>
         
-          <form action="" method="" className="full-width fl-col"
-          style={{marginBottom: "2rem"}}
+          <form 
+          className="full-width fl-col"
+          style={{marginBottom: "2rem"}} 
+          onSubmit={
+          handleSubmit    
+          }
           >
             <div className="form-group full-width fl-col-left">
                     <label htmlFor="">E-mail</label>
               <input
+                className="form-control"
                 type="email"
                 name="email"
                 id="email"
-                className="form-control"
+                value={email}
+                required
+                onChange={(event) => {
+                        setEmail(event.target.value);
+                }}
               />
               <label htmlFor="pass">Mot de passe</label>
               <input
+                className="form-control"
                 type="password"
                 name="password"
 id="pass"
-                className="form-control"
+value={password}
                 required
+                onChange={(event) => {
+                        setPassword(event.target.value)
+                }}
               />
             
             </div>
-            <button type="submit" className="btn">
+            <button type="submit" className="btn"
+            >
               Se connecter
             </button>
           </form>
