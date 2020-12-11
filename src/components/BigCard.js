@@ -2,6 +2,7 @@ import React from 'react'
 import "../main.css"
 import styled from "styled-components"
 import {FaChevronRight} from "react-icons/fa"; 
+import {BiHeart} from "react-icons/bi"
 import user from "../icons/user.png"
 
 
@@ -14,6 +15,11 @@ const BigCard = ({offer, productNumber}) => {
       <section className="main fl-col">
         <div className="img-container">
 <img src={pictures} alt={title}/>
+<div className="heart d-flex">
+  <BiHeart 
+  fontSize="1.5rem"
+  />
+</div>
         </div>
         <div className="title fl-col-left">
   <h3>{title}</h3>
@@ -77,14 +83,25 @@ height: 100%;
 }
 .img-container {
  width: 100%;
+  position: relative; 
  img {
+  
    width: 100%; 
  height: 19rem;
   object-fit: cover;
   display: block;
  }
  }
+.heart{
+  position: absolute; 
+  top: 15px; 
+  right: 20px; 
+  background: var(--clr-white-1); 
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%; 
 
+}
  .title {
    width: 95%;
    padding: 1rem 0; 
@@ -146,6 +163,9 @@ h4 {
   margin-bottom: 0.75rem;
 }
 
+}
+.heart {
+  display:none; 
 }
  .title {
    padding-bottom: 1rem; 
