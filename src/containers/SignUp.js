@@ -12,7 +12,7 @@ const SignUp = ({setUser}) => {
         const [password, setPassword] = useState("")
         const [confirmPassword, setConfirmPassword] = useState("")
         const [errorMessage, setErrorMessage] = useState(false)
-//       const [isLoading, setIsLoading] = useState(false)
+      const [isLoading, setIsLoading] = useState(false)
       const history = useHistory();
 
         let isOk = false;
@@ -23,7 +23,7 @@ isOk = true;
 
         const handleSubmit = async (e) => {
                 e.preventDefault()
-                // setIsLoading(true);
+                setIsLoading(true);
                 if (isOk) {
                         try {
 const response = await Axios.post("http://localhost:5000/api/user/sign_up", {
@@ -37,14 +37,14 @@ if (response.data.token) {
 const {token} = response.data;
 Cookies.set("token", token);
 setUser(response.data);
-//  setIsLoading(false);
+ setIsLoading(false);
 history.push("/");
 }
 
                         } catch(error) {
                                 console.log(error.message);
                                 alert("An error occured");
-                                // setIsLoading(false);
+                                setIsLoading(false);
                         }
 
                 } 
@@ -52,6 +52,13 @@ history.push("/");
         return (
                 <Wrapper>
                         <section className="section d-flex"  >
+                                {isLoading && 
+          <div className="loader lds-facebook">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+}
 
   <article className="contact-form fl-col">
           <form 
@@ -62,12 +69,12 @@ history.push("/");
           }
           >
             <div className="form-group full-width fl-col-left">
-                               <label htmlFor="">Nom d'utilisateur</label>
+                               <label htmlFor="user">Nom d'utilisateur</label>
               <input
                 className="form-control"
                 type="text"
                 name="username"
-                id="username"
+                id="user"
                 placeholder="ex: Camille"
                 value={userName}
                 required
@@ -75,7 +82,7 @@ history.push("/");
                         setUserName(event.target.value);
                 }}
               />
-                    <label htmlFor="">E-mail</label>
+                    <label htmlFor="email">E-mail</label>
               <input
                 className="form-control"
                 type="email"
@@ -102,12 +109,12 @@ value={password}
                         setErrorMessage(false)
                 }}
               />
-               <label htmlFor="pass">Confirmez votre mot de passe</label>
+               <label htmlFor="confPass">Confirmez votre mot de passe</label>
               <input
                 className="form-control"
                 type="password"
                 name="password"
-id="pass"
+id="confPass"
 value={confirmPassword}
                 required
                 onChange={(event) => {
@@ -152,12 +159,17 @@ value={confirmPassword}
 export default SignUp
 
 const Wrapper = styled.main`
+position: relative;
 min-height: calc(100vh - 4rem);
 padding: 1rem;
 display: flex; 
 flex-direction: column; 
 justify-content: center; 
 align-items: center;  
+.loader {
+        position: absolute;
+        top: 2rem;
+}
 .contact-form{
           width: 90%;
         height: 80vh; 
@@ -206,6 +218,10 @@ width: 50%;
         display: none;
 }
 @media screen and (min-width: 1064px) { 
+.loader {
+        position: absolute;
+        left: 30vw; 
+}
         .contact-form{
                 margin-right: 0.5rem;
         }

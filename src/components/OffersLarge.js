@@ -4,9 +4,9 @@ import "../main.css"
 import styled from "styled-components"
 import {Card, SearchBox} from "./index"
 import {ImStarFull} from "react-icons/im"
+import options from "../constants/sortOptions"
 
-
-const OffersLarge = ({count, isLoading, limit, offers, skipTab, setSkip}) => {
+const OffersLarge = ({count, isLoading, limit, offers, skipTab, setCategory, setPriceMax, setPriceMin, setSkip, setSort, setTitle}) => {
         // console.log(offers);
         return (
                 <Wrapper>
@@ -17,7 +17,12 @@ const OffersLarge = ({count, isLoading, limit, offers, skipTab, setSkip}) => {
 
   </div> 
   <section className="fl-col"  >
-<SearchBox />
+<SearchBox 
+setCategory={setCategory}
+setPriceMax={setPriceMax}
+setPriceMin={setPriceMin}
+setTitle={setTitle}
+/>
   </section>
    
                         </div>
@@ -54,7 +59,11 @@ style={{color: "#FF6E13", fontWeight: "bold" }}
          
          >Urgentes</p>
 </div>
-<select></select>
+<select
+onChange={(event) => {
+        setSort(event.target.value);
+}}
+>{options}</select>
                                 </div>
                                 <h3>Annonces catégorie : Toute la France</h3>
                                 <div className="offers-container fl-col">

@@ -9,12 +9,12 @@ import styled from "styled-components"
 const SignIn = ({setUser}) => {
         const [email, setEmail] = useState("")
         const [password, setPassword] = useState("")
-        // const [isLoading, setIsLoading] = useState(false)
+        const [isLoading, setIsLoading] = useState(false)
         const history = useHistory();
 
 const handleSubmit = async (e) => {
         e.preventDefault()
-// setIsLoading(true)
+setIsLoading(true)
 
 try {
 const response = await Axios.post("http://localhost:5000/api/user/log_in", 
@@ -30,16 +30,13 @@ if (response.data) {
 const {token} = response.data 
 Cookie.set("token", token);
 setUser(response.data);
-// setIsLoading(false);
+setIsLoading(false);
 history.push("/");
 }
-
-
-
 } catch (error) {
 console.log(error)
 alert("Error login")
-// setIsLoading(false);
+setIsLoading(false);
 }
 
 }
@@ -49,6 +46,13 @@ alert("Error login")
                         <section
                         className="section sign-in-section fl-col"
                         >
+                                 {isLoading && 
+          <div className="loader lds-facebook">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+}
 
    <article className="contact-form fl-col">
            <header className="fl-col-left" >
@@ -64,7 +68,7 @@ alert("Error login")
           }
           >
             <div className="form-group full-width fl-col-left">
-                    <label htmlFor="">E-mail</label>
+                    <label htmlFor="email">E-mail</label>
               <input
                 className="form-control"
                 type="email"
@@ -115,12 +119,17 @@ value={password}
 export default SignIn
 
 const Wrapper = styled.main`
+position: relative;
 min-height: calc(100vh - 4rem);
 padding: 1rem;
 display: flex; 
 flex-direction: column; 
 justify-content: center; 
 align-items: center;  
+.loader {
+        position: absolute;
+        top: 2rem;
+}
 .contact-form {
         width: 90%;
         height: 80vh; 
@@ -155,6 +164,10 @@ button {
   
 }
 @media screen and (min-width: 1064px) {
+        .loader {
+        position: absolute;
+        left: 48vw; 
+}
 .contact-form { 
  box-shadow: var(--light-shadow);
 

@@ -75,7 +75,7 @@ history.push("/");
           }
           >
             <div className="form-group full-width fl-col-left">
-                               <label htmlFor="">Titre de l'annonce</label>
+                               <label htmlFor="title">Titre de l'annonce</label>
               <input
                 className="form-control"
                 type="text"
@@ -87,16 +87,17 @@ history.push("/");
                         setOffer({...offer, title: event.target.value})
                 }}
               />
-              <label htmlFor="">Catégorie</label>
+              <label htmlFor="category">Catégorie</label>
                    <select
                       className="form-control short"
+                      id="category"
               onChange={(event) => {
                  setOffer({...offer, category: event.target.value})
               }}
             >
               {options}
             </select>
-                     <label htmlFor="">Prix</label>
+                     <label htmlFor="price">Prix</label>
               <input
                 className="form-control short"
                 type="number"
@@ -109,10 +110,10 @@ history.push("/");
                 }}
                
               />
-                    <label htmlFor="">Texte de l'annonce</label>
+                    <label htmlFor="desc">Texte de l'annonce</label>
               <textarea
-                name="message"
-                id=""
+                name="description"
+                id="desc"
                 rows="5"
                 placeholder="Décrivez votre annonce"
                 className="form-control"
@@ -124,7 +125,7 @@ history.push("/");
      
                
           
-             <label htmlFor="">Localisation</label>
+             <label htmlFor="location">Localisation</label>
               <input
                 className="form-control"
                 type="text"
@@ -136,9 +137,11 @@ history.push("/");
                          setOffer({...offer, location: event.target.value})
                 }}
               />
-                <label htmlFor="">Ajouter une photo</label>
+                <label htmlFor="pic">Ajouter une photo</label>
                  <input
               className="form-control short file"
+              name="picture"
+              id="pic"
               type="file"
               onChange={(event) => {
                  setOffer({...offer, file: event.target.files[0]})

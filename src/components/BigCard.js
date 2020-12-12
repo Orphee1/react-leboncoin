@@ -8,7 +8,7 @@ import user from "../icons/user.png"
 
 const BigCard = ({offer, productNumber}) => {
   // console.log(offer);
-  console.log(productNumber);
+  
   const {
     // category, 
     created, creator, description, 
@@ -263,7 +263,7 @@ opacity: 1;
   width: 40px; 
   height: 40px; 
   border-radius: 50%; 
-box-shadow: var(--dark-shadow);  
+box-shadow: var(--light-shadow);  
 }
  .title {
    width: 100%; 
@@ -293,7 +293,7 @@ border-bottom: 1px solid var(--clr-grey-3);
 display: flex; 
 padding: 1rem; 
    border-radius: var(--radius);
-   box-shadow: var(--dark-shadow); 
+   box-shadow: var(--light-shadow); 
 
     img {
     width: 50px; 

@@ -13,6 +13,12 @@ const [count, setCount] = useState()
 const [isLoading, setIsLoading] = useState(false)
 const [skip, setSkip] = useState(0)
 const limit = 10; 
+// fetching data parameters
+const [category, setCategory] = useState();
+const [title, setTitle] = useState();
+const [priceMin, setPriceMin] = useState()
+const [priceMax, setPriceMax] = useState()
+const [sort, setSort] = useState()
 
         const {searchBoxOpen, sideBarOpen, toggleSide} = useContext(ToggleContext)
 
@@ -89,8 +95,14 @@ count={count}
 isLoading={isLoading}
 limit={limit}
 offers={offers}
+setCategory={setCategory}
+setPriceMax={setPriceMax}
+setPriceMin={setPriceMin}
 setSkip={setSkip}
+setSort={setSort}
+setTitle={setTitle}
 skipTab={skipTab}
+title={title}
 />        
 </section>
                       
