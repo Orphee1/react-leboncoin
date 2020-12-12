@@ -17,15 +17,16 @@ console.log(modal);
 
   return (
     <Router>
-             {modal && <Modal 
-              setModal={setModal}
-            />}
+           
             <ToggleProvider >
       <Header 
       user={user}
       setUser={setUser}
       setModal={setModal}
       />
+        {modal && <Modal 
+              setModal={setModal}
+            />}
              
       <Switch >
         <Route 
