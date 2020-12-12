@@ -1,24 +1,71 @@
 import React, {useState} from 'react'
+import {useHistory} from "react-router-dom"
 import Axios from "axios";
+import Cookie from "js-cookie";
 import "../main.css"
 import styled from "styled-components"
+import options from "../constants/selectOptions"
+
 
 const Publish = () => {
+        const history = useHistory();
+const [isLoading, setIsLoading] = useState(false)
+const [offer, setOffer] = useState({
+        title: "", 
+        category: "", 
+        price: 0, 
+        description: "",
+        location: "", 
+        file: null
+})
 
-        const [title, setTitle] = useState("")
-        const [description, setDescription] = useState("")
-        const [price, setPrice] = useState(0)
-        const [category, setCategory] = useState("")
-        const [location, setLocation] = useState("")
-        const [file, setFile] = useState("")
+const token = Cookie.get("token");
 
-        const handleSubmit = (e) => {
+        const handleSubmit = async (e) => {
                 e.preventDefault()
+                setIsLoading(true);
+
+                const formData = new FormData();
+                formData.append("title", offer.title);
+                formData.append("category", offer.category);
+                formData.append("price", offer.price);
+                formData.append("description", offer.description);
+                formData.append("location", offer.location);
+                formData.append("pictures", offer.file);
+                // console.log(formData);
+try {
+console.log("here we are")
+const response = await Axios.post("http://localhost:5000/api/offer/publish", 
+formData, 
+{
+        headers: {
+                Authorization: "Bearer " + token,
+                "Content-Type" : "multipart/form-data"
+        }
+}
+)
+console.log(response);
+setIsLoading(false);
+history.push("/");
+
+} catch(error) {
+        console.log(error);
+        alert("An error occurred sending product")
+        setIsLoading(false);
+}
+
         }
 
         return (
                 <Wrapper>
                         <div className="section d-flex">
+                                   {isLoading && 
+          <div className="loader lds-facebook">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+}
                                  <article className="contact-form fl-col-left">
                                          <h2>Déposer une annonce</h2>
           <form
@@ -34,11 +81,33 @@ const Publish = () => {
                 type="text"
                 name="title"
                 id="title"
-                value={title}
+                value={offer.title}
                 required
                 onChange={(event) => {
-                        setTitle(event.target.value);
+                        setOffer({...offer, title: event.target.value})
                 }}
+              />
+              <label htmlFor="">Catégorie</label>
+                   <select
+                      className="form-control short"
+              onChange={(event) => {
+                 setOffer({...offer, category: event.target.value})
+              }}
+            >
+              {options}
+            </select>
+                     <label htmlFor="">Prix</label>
+              <input
+                className="form-control short"
+                type="number"
+                name="price"
+                id="price"
+                value={offer.price}
+                required
+                onChange={(event) => {
+                         setOffer({...offer, price: event.target.value})
+                }}
+               
               />
                     <label htmlFor="">Texte de l'annonce</label>
               <textarea
@@ -47,52 +116,32 @@ const Publish = () => {
                 rows="5"
                 placeholder="Décrivez votre annonce"
                 className="form-control"
-                value={description}
+                value={offer.description}
                 onChange={(event) => {
-                        setDescription(event.target.value)
+                         setOffer({...offer, description: event.target.value})
                 }}
               />
-              <label htmlFor="">Prix</label>
-              <input
-                className="form-control"
-                type="number"
-                name="price"
-id="price"
-value={price}
-                required
-                onChange={(event) => {
-                        setPrice(event.target.value)
-                }}
+     
                
-              />
-               <label htmlFor="">Catégorie</label>
-               <select
-                      className="form-control"
-                //       value={}
-              onChange={(event) => {
-                setCategory(event.target.value);
-              }}
-            >
-              {/* {options} */}
-            </select>
+          
              <label htmlFor="">Localisation</label>
               <input
                 className="form-control"
                 type="text"
                 name="location"
-id="location"
-value={location}
+                id="location"
+                value={offer.location}
                 required
                 onChange={(event) => {
-                        setLocation(event.target.value)
+                         setOffer({...offer, location: event.target.value})
                 }}
               />
                 <label htmlFor="">Ajouter une photo</label>
                  <input
-              className="form-control"
+              className="form-control short file"
               type="file"
               onChange={(event) => {
-                setFile(event.target.files[0]);
+                 setOffer({...offer, file: event.target.files[0]})
               }}
             />
            
@@ -113,49 +162,63 @@ value={location}
 export default Publish
 
 const Wrapper = styled.main`
+position: relative;
 min-height: calc(100vh - 4rem);
 padding: 2rem 2rem 2.5rem 2rem;
 display: grid; 
 place-items: center;
-
+.loader {
+        position: absolute;
+        top: 2rem;
+        right: 12vw; 
+}
 .contact-form {
 width: 100%;
-        height: auto; 
-        background: var(--clr-white-1);
-        padding: 2rem;
-  max-width: 50rem;
+height: auto; 
+background: var(--clr-white-1);
+padding: 2rem;
+max-width: 50rem;
 }
 form {
-        width:100%;
-        max-width: 35rem;
-        padding: 1rem;
-        button {
-                width: 50%;
-                height: 2.6rem;
-                color: var(--clr-white-1);
-                background: var(--clr-blue);
+width:100%;
+max-width: 35rem;
+padding: 1rem;
+button {
+        width: 50%;
+        height: 2.6rem;
+        color: var(--clr-white-1);
+        background: var(--clr-blue);
         }
 }
 .form-group {
  width: 100%;
- /* padding: 1rem; */
-        margin: 1rem auto;
-        label {
-                font-weight: bold;
-                margin-bottom: 0.5rem; 
+margin: 1rem auto;
+label {
+font-weight: bold;
+margin-bottom: 0.5rem; 
         }
 }
 .form-control {
-  display: block;
+display: block;
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid var(--clr-grey-3);
   margin-bottom: 1.25rem;
-  
+}
+.short {
+width: 50%;
+}
+.file {
+border: transparent;
 }
 @media screen and (min-width: 1064px) { 
+        padding: 3rem 2rem 4rem 2rem;
 .contact-form {
-        box-shadow: var(--dark-shadow);
+        box-shadow: var(--light-shadow);
+}
+.loader {
+        position: absolute;
+        right: 30vw; 
 }
 
 }

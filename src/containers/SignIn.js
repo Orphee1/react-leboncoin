@@ -156,7 +156,7 @@ button {
 }
 @media screen and (min-width: 1064px) {
 .contact-form { 
-box-shadow: var(--dark-shadow);
+ box-shadow: var(--light-shadow);
 
 }
 
