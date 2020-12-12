@@ -1,11 +1,16 @@
-import React from 'react'
-import {Link} from "react-router-dom"; 
+import React, {useContext} from 'react'
+import {ToggleContext} from "../context/toggleContext"
+import {Link, useHistory} from "react-router-dom"; 
+import Cookie from "js-cookie";
 import "../main.css"
 import styled from "styled-components"
 import { BiBell,  BiHeart, BiMessageDetail, BsPlusSquare, FaChevronRight, GiMagnifyingGlass, ImCross } from 'react-icons/all'
 import logo from "../icons/logo.png"
 
 const SideBar = ({sideBarOpen, toggleSide}) => {
+        const {setModal} = useContext(ToggleContext)
+        const token = Cookie.get("token");
+        const history = useHistory()
         return (
                 <Wrapper  >
                         <section className={` ${sideBarOpen ? "show-sidebar": ""}`}    >
@@ -22,10 +27,20 @@ onClick={toggleSide}
                                 </header>
                                 <div className="top section">
 <div className="s-b-left">
+        <button className="btn"
+        onClick={() => {
+                if (token) {
+history.push("/publish/")
+                } else {
+setModal(true);
+                }
+        }}
+        >
         <BsPlusSquare 
         fontSize="1.5rem"
         style={{color : "black", marginRight: "1rem"}}
         /> <span>Déposer une annonce</span>
+        </button>
 </div>
 <div className="s-b-left ">
         <GiMagnifyingGlass 

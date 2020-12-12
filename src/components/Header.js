@@ -8,9 +8,9 @@ import { BiBell, BiHeart, BiMessageDetail, BiUser, BsPlusSquare, GiMagnifyingGla
 import logo from '../icons/logo.png'
 import {ToggleContext} from "../context/toggleContext"
 
-const Header = ({user, setUser, setModal}) => {
+const Header = ({user, setUser}) => {
   const token = Cookie.get("token")
-        const {toggleSearch, searchBoxOpen, toggleSide } = useContext(ToggleContext)
+        const { searchBoxOpen, setModal, toggleSearch, toggleSide } = useContext(ToggleContext)
         const history = useHistory();
 
         const disconnect = () => {

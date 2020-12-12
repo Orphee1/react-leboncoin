@@ -6,6 +6,7 @@ import React, {useState, createContext} from 'react'
  const ToggleProvider = ({children}) => {
         const [searchBoxOpen, setSearchBoxOpen] = useState(false)
         const [sideBarOpen, setSideBarOpen] = useState(false)
+         const [modal, setModal] = useState(false);
 
         const toggleSearch = () => {  
         setSearchBoxOpen(!searchBoxOpen)
@@ -16,7 +17,7 @@ const toggleSide = () => {
 
 return (
        <ToggleContext.Provider
-       value={{searchBoxOpen, toggleSearch, sideBarOpen, toggleSide}}
+       value={{searchBoxOpen, toggleSearch, sideBarOpen, toggleSide, modal, setModal}}
        >
                {children}
        </ToggleContext.Provider>

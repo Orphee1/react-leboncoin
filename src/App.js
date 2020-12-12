@@ -1,31 +1,29 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import "./main.css"
 import Cookie from "js-cookie";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {Offer, Offers, Publish, SignIn, SignUp} from "./containers"
 import {Footer, Header, Modal} from "./components"
-import {ToggleProvider} from "./context/toggleContext"
+import {ToggleContext} from "./context/toggleContext"
 
 
 
 function App() {
 const token = Cookie.get("token")
   const [user, setUser] = useState({token: token})
-  const [modal, setModal] = useState(false);
-console.log(modal);
+  const {modal} = useContext(ToggleContext);
+
   
 
   return (
     <Router>
            
-            <ToggleProvider >
+            {/* <ToggleProvider > */}
       <Header 
       user={user}
       setUser={setUser}
-      setModal={setModal}
       />
         {modal && <Modal 
-              setModal={setModal}
             />}
              
       <Switch >
@@ -60,7 +58,7 @@ console.log(modal);
 <Offers />
         </Route>
       </Switch>
-      </ToggleProvider>
+      {/* </ToggleProvider> */}
       <Footer />
     </Router>
  

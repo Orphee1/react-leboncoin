@@ -9,7 +9,7 @@ import {AiFillPlusCircle} from "react-icons/ai"
 
 const SideSearchBox = ({count, isLoading}) => {
 
-        console.log(count)
+        
         return (
                 <Wrapper>
                         <div className="first fl-col" >

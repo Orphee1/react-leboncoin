@@ -68,6 +68,7 @@ history.push("/");
                 type="text"
                 name="username"
                 id="username"
+                placeholder="ex: Camille"
                 value={userName}
                 required
                 onChange={(event) => {

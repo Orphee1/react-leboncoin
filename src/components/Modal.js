@@ -1,14 +1,25 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {ToggleContext} from "../context/toggleContext"
 import {Link} from "react-router-dom"
 import "../main.css"; 
 import styled from "styled-components"
+import {ImCross } from "react-icons/im"
 import image from "../icons/modal-illustration.png"
 
-const Modal = ({setModal}) => {
+const Modal = () => {
+  const {setModal} = useContext(ToggleContext)
   return (
     <Wrapper>
       <section className="modal-content section fl-col-left"  >
-      
+      <button className="btn"
+      onClick={() => {
+        setModal(false)
+      }}
+      >
+        <ImCross 
+           fontSize='2rem' style={{ color: '#939ea9' }} 
+        />
+      </button>
           <h2>Déposer une annonce</h2>
           <div className="d-flex full-width">
 <div className="message-container">
@@ -66,11 +77,16 @@ const Wrapper = styled.main`
       align-items: center;
       background: var(--clr-white-2);
       .modal-content {
-          /* width: 100%; */
+        position: relative;
         height: auto; 
        background: var(--clr-white-1);
         padding: 1rem;
   max-width: 55rem;
+  svg {
+    position: absolute;
+    top: 2px; 
+    right: 10px;
+  }
       }
       .message-container{
 width: 100%;
@@ -101,6 +117,8 @@ height: 42px;
 display: none;
       }
   @media (min-width: 1064px) {
+    display: grid;
+    place-items: center;
     .message-container{
 flex: 3;
 margin-right: 0.5rem;
