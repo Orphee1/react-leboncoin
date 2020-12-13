@@ -35,7 +35,9 @@ const Header = ({user, setUser}) => {
            </Link>
           {searchBoxOpen ? (
          <button className="btn" 
-          onClick={toggleSearch}
+          onClick={
+            toggleSearch
+          }
          >
           <ImCross 
           fontSize='2rem' style={{ color: '#939ea9' }} 

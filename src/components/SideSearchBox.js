@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {ToggleBar} from "./index"
 import "../main.css"
 import styled from "styled-components"
@@ -6,17 +6,25 @@ import {FaChevronRight} from "react-icons/fa"
 import {GiMagnifyingGlass } from "react-icons/gi"
 import {BsListCheck} from "react-icons/bs"
 import {AiFillPlusCircle} from "react-icons/ai"
+import {ToggleContext} from "../context/toggleContext"
+import options from "../constants/selectOptions"
 
-const SideSearchBox = ({count, isLoading}) => {
+const SideSearchBox = ({count, isLoading, setCategory, setPriceMin, setPriceMax, setTitle, title}) => {
 
-        
+        const {toggleSearch} = useContext(ToggleContext);
+     
         return (
                 <Wrapper>
                         <div className="first fl-col" >
                                 <div  className="first-a d-flex"
                                 >
                                         <input type="text"
-                                         placeholder="Que recherchez vous?"
+                                        name="title"
+                                        placeholder="Que recherchez vous?"
+                                        value={title}
+                                        onChange={(event) => {
+                                                setTitle(event.target.value);
+                                        }}
                                         >
                                              
                                         </input>
@@ -29,13 +37,19 @@ const SideSearchBox = ({count, isLoading}) => {
                                 <div className="s-b" 
                                  style={{width: "90%"}}
                                 >
-<div className="s-b"
+<div className="selecter d-flex"
 >
         <BsListCheck 
   fontSize="1.5rem"
   style={{marginRight: "1rem"}}      
         />
-        <p>Toutes catégories</p>
+        <select
+        id="category"
+        name="category"
+        onChange={(event) => {
+                setCategory(event.target.value);
+        }}
+        >{options}</select>
 </div>
 <FaChevronRight 
   fontSize="1.5rem"
@@ -132,7 +146,9 @@ style={{fontWeight: "bold"}}
                                 </div>
                         </div>
                        <footer>
-                               <button className="btn"> 
+                               <button className="btn"
+                               onClick={toggleSearch}
+                               > 
                                       Rechercher {" "}
                                       {!isLoading && `${count}  résultats`}  
                         </button>
@@ -176,7 +192,7 @@ box-shadow: var(--light-shadow);
        svg {
                position: absolute; 
                top: 1.2rem; 
-               right: 2.5rem; 
+               right: 3.5rem; 
        }
 
 }
@@ -187,6 +203,20 @@ box-shadow: var(--light-shadow);
       
 
 }
+}
+.selecter {
+        flex: 1;
+height: 100%;
+margin-right: 1rem; 
+         border-radius: var(--radius);
+        select{
+                           width: 100%;
+                height: 100%;
+      background-color: hsl(200, 16%, 96%);
+font-size: 1rem;
+      color: var(--clr-grey-2);
+      border: none;
+        }
 }
 .second {
 grid-row: 2/3; 

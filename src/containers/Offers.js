@@ -13,9 +13,9 @@ const [count, setCount] = useState()
 const [isLoading, setIsLoading] = useState(false)
 const [skip, setSkip] = useState(0)
 const limit = 10; 
-// fetching data parameters
+// parameters
 const [category, setCategory] = useState();
-const [title, setTitle] = useState();
+const [title, setTitle] = useState("");
 const [priceMin, setPriceMin] = useState()
 const [priceMax, setPriceMax] = useState()
 const [sort, setSort] = useState()
@@ -29,8 +29,13 @@ const fetchData = async () => {
   const response = await Axios.post(
           'http://localhost:5000/api/offers/with-count/', {
         //   'https://leboncoinhl.herokuapp.com/api/offers/with-count/', {
-          skip: skip,
+        category: category,        
         limit: limit,
+                priceMin: priceMin, 
+                priceMax: priceMax,
+                sort: sort,
+          skip: skip,
+          title: title,
   })
 // console.log(response);
 if (response.data) {
@@ -38,7 +43,7 @@ if (response.data) {
 setOffers(offers);
 setCount(count);
 setIsLoading(false);
-// console.log(count);
+
 }
 
         } catch (error) {
@@ -52,7 +57,7 @@ useEffect(() => {
         
 fetchData(); 
 // eslint-disable-next-line
-}, [skip])
+}, [category, skip, priceMin, priceMax, sort, title])
 
 // create skip buttons bottom desktop screen 
 let skipTab = []
@@ -74,12 +79,17 @@ skipTab.push(i + 1);
                             <SideSearchBox 
                             count={count}
                             isLoading={isLoading}
+                            setCategory={setCategory}
+                            setPriceMax={setPriceMax}
+setPriceMin={setPriceMin}
+setTitle={setTitle}
+title={title}
                             />
                     ) : (
 <OffersSmall 
 count={count}
-limit={limit}
 isLoading={isLoading}
+limit={limit}
 offers={offers}
 setSkip={setSkip}
  />

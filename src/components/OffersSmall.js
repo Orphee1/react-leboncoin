@@ -8,7 +8,7 @@ import {ImLocation, ImStarFull} from "react-icons/im"
 import {FaChevronLeft, FaChevronRight} from "react-icons/fa"
 
 
-const OffersSmall = ({count, limit, isLoading, offers, setSkip}) => {
+const OffersSmall = ({count, limit, isLoading, offers, setSkip }) => {
          const {toggleSearch} = useContext(ToggleContext)
         //  console.log(offers);
          let pageNumber = count / limit; 

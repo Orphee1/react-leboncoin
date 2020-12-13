@@ -17,8 +17,6 @@ const token = Cookie.get("token")
 
   return (
     <Router>
-           
-            {/* <ToggleProvider > */}
       <Header 
       user={user}
       setUser={setUser}
@@ -58,7 +56,6 @@ const token = Cookie.get("token")
 <Offers />
         </Route>
       </Switch>
-      {/* </ToggleProvider> */}
       <Footer />
     </Router>
  

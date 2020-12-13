@@ -32,9 +32,8 @@ const token = Cookie.get("token");
                 formData.append("description", offer.description);
                 formData.append("location", offer.location);
                 formData.append("pictures", offer.file);
-                // console.log(formData);
+               
 try {
-console.log("here we are")
 const response = await Axios.post("http://localhost:5000/api/offer/publish", 
 formData, 
 {
