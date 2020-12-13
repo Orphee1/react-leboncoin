@@ -17,9 +17,9 @@ npm install && npm start
 
 ## Technologies
 
-React
-React Router
-Axios
-JS Cookie
-React Helmet
-Styled Components
+- React
+- React Router
+- Axios
+- JS Cookie
+- React Helmet
+- Styled Components
