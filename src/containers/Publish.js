@@ -34,7 +34,8 @@ const token = Cookie.get("token");
                 formData.append("pictures", offer.file);
                
 try {
-const response = await Axios.post("http://localhost:5000/api/offer/publish", 
+// const response = await Axios.post("http://localhost:5000/api/offer/publish", 
+const response = await Axios.post("https://leboncoinhl.herokuapp.com/api/offer/publish", 
 formData, 
 {
         headers: {
