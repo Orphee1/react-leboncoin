@@ -1,20 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import "./main.css";
-import App from './App';
-import {ToggleProvider} from "./context/toggleContext"
-
+import App from "./App";
+import { ToggleProvider } from "./context/toggleContext";
+import { ProductsProvider } from "./context/productsContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ToggleProvider>
-    <App />
-    </ToggleProvider>
+    <ProductsProvider>
+      <ToggleProvider>
+        <App />
+      </ToggleProvider>
+    </ProductsProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-
