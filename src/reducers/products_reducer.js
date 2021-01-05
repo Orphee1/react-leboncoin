@@ -21,11 +21,31 @@ const products_reducer = (state, action) => {
   if (action.type === "SET_SORT") {
     return { ...state, sort: action.payload };
   }
+
   if (action.type === "UPDATE_FILTERS") {
     const { name, value } = action.payload;
     return { ...state, filters: { ...state.filters, [name]: value } };
   }
-  return state;
+
+  if (action.type === "GET_SINGLE_OFFER_BEGIN") {
+    return { ...state, single_offer_loading: true };
+  }
+
+  if (action.type === "GET_SINGLE_OFFER_SUCCESS") {
+    const { offer, vendor_offers } = action.payload;
+    return {
+      ...state,
+      single_offer_loading: false,
+      single_offer: offer,
+      vendor_offers,
+    };
+  }
+
+  if (action.type === "GET_SINGLE_OFFER_ERROR") {
+    return { ...state, single_offer_loading: false, single_offer_error: true };
+  }
+
+  throw new Error(`No Matching "${action.type}" - action type`);
 };
 
 export default products_reducer;

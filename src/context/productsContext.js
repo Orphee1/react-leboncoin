@@ -19,6 +19,10 @@ const initialState = {
     priceMin: 0,
     priceMax: 0,
   },
+  single_offer_loading: false,
+  single_offer_error: false,
+  single_offer: {},
+  vendor_offers: 0,
 };
 
 const ProductsContext = createContext();
@@ -46,6 +50,24 @@ export const ProductsProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
       dispatch({ type: "GET_OFFERS_ERROR" });
+    }
+  };
+
+  const fetchSingleProduct = async (url) => {
+    dispatch({ type: "GET_SINGLE_OFFER_BEGIN" });
+    try {
+      const response = await Axios.get(url);
+      // console.log(response);
+      if (response.data) {
+        const offer = response.data[0];
+        const vendor_offers = response.data[1];
+        dispatch({
+          type: "GET_SINGLE_OFFER_SUCCESS",
+          payload: { offer, vendor_offers },
+        });
+      }
+    } catch (error) {
+      dispatch({ type: "GET_SINGLE_OFFER_ERROR" });
     }
   };
 
@@ -87,6 +109,7 @@ export const ProductsProvider = ({ children }) => {
     <ProductsContext.Provider
       value={{
         ...state,
+        fetchSingleProduct,
         handleFilters,
         handleSkip,
         handleSort,
