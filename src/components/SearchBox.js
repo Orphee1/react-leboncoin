@@ -9,10 +9,11 @@ import { useProductsContext } from "../context/productsContext";
 
 const Searchbox = ({}) => {
   const {
+    clearFilters,
     filters: { title },
     handleFilters,
   } = useProductsContext();
-  // console.log(title);
+
   return (
     <Wrapper>
       <div className="container fl-col-left">
@@ -25,7 +26,6 @@ const Searchbox = ({}) => {
             <select
               name="category"
               onChange={(event) => {
-                // setCategory(event.target.value);
                 handleFilters(event);
               }}
             >
@@ -43,7 +43,6 @@ const Searchbox = ({}) => {
               name="title"
               value={title}
               onChange={(event) => {
-                // setTitle(event.target.value);
                 handleFilters(event);
               }}
             />
@@ -57,7 +56,6 @@ const Searchbox = ({}) => {
               name="priceMin"
               id="priceMin"
               onChange={(event) => {
-                // setPriceMin(event.target.value);
                 handleFilters(event);
               }}
             >
@@ -72,7 +70,6 @@ const Searchbox = ({}) => {
               name="priceMax"
               id="priceMax"
               onChange={(event) => {
-                // setPriceMax(event.target.value);
                 handleFilters(event);
               }}
             >
@@ -80,6 +77,9 @@ const Searchbox = ({}) => {
             </select>
             <span>€</span>
           </div>
+          <button type="button" className="clear-btn" onClick={clearFilters}>
+            clear filters
+          </button>
         </div>
       </div>
     </Wrapper>
@@ -148,7 +148,7 @@ const Wrapper = styled.div`
     }
   }
   .bottom {
-    width: 70%;
+    width: 100%;
     p {
       font-size: 0.8rem;
       margin-right: 0.5rem;
@@ -161,5 +161,14 @@ const Wrapper = styled.div`
       color: var(--clr-grey-2);
       border: none;
     }
+  }
+  .clear-btn {
+    outline: none;
+    cursor: pointer;
+    color: var(--clr-grey-2);
+    border: 1px solid var(--clr-grey-2);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius);
+    background: hsl(200, 16%, 96%);
   }
 `;

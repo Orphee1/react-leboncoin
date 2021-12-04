@@ -3,11 +3,18 @@ const products_reducer = (state, action) => {
     return { ...state, isLoading: true };
   }
   if (action.type === "GET_OFFERS_SUCCESS") {
+    const {
+      count,
+      // priceMax,
+      offers,
+    } = action.payload;
+
     return {
       ...state,
-      offers: action.payload.offers,
-      count: action.payload.count,
+      offers: offers,
+      count: count,
       isLoading: false,
+      // filters: { ...state.filters, priceMax: priceMax },
     };
   }
   if (action.type === "GET_OFFERS_ERROR") {
@@ -20,6 +27,19 @@ const products_reducer = (state, action) => {
 
   if (action.type === "SET_SORT") {
     return { ...state, sort: action.payload };
+  }
+
+  if (action.type === "CLEAR_FILTERS") {
+    return {
+      ...state,
+      filters: {
+        ...state.filters,
+        title: "",
+        category: "",
+        priceMin: 0,
+        priceMax: 0,
+      },
+    };
   }
 
   if (action.type === "UPDATE_FILTERS") {

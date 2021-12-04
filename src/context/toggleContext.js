@@ -1,28 +1,33 @@
-import React, {useState, createContext} from 'react'
+import React, { useState, createContext } from "react";
 
+const ToggleContext = createContext();
 
- const ToggleContext = createContext()
+const ToggleProvider = ({ children }) => {
+  const [searchBoxOpen, setSearchBoxOpen] = useState(true);
+  const [sideBarOpen, setSideBarOpen] = useState(false);
+  const [modal, setModal] = useState(false);
 
- const ToggleProvider = ({children}) => {
-        const [searchBoxOpen, setSearchBoxOpen] = useState(false)
-        const [sideBarOpen, setSideBarOpen] = useState(false)
-         const [modal, setModal] = useState(false);
+  const toggleSearch = () => {
+    setSearchBoxOpen(!searchBoxOpen);
+  };
+  const toggleSide = () => {
+    setSideBarOpen(!sideBarOpen);
+  };
 
-        const toggleSearch = () => {  
-        setSearchBoxOpen(!searchBoxOpen)
-}
-const toggleSide = () => {
-        setSideBarOpen(!sideBarOpen)
-}
+  return (
+    <ToggleContext.Provider
+      value={{
+        searchBoxOpen,
+        toggleSearch,
+        sideBarOpen,
+        toggleSide,
+        modal,
+        setModal,
+      }}
+    >
+      {children}
+    </ToggleContext.Provider>
+  );
+};
 
-return (
-       <ToggleContext.Provider
-       value={{searchBoxOpen, toggleSearch, sideBarOpen, toggleSide, modal, setModal}}
-       >
-               {children}
-       </ToggleContext.Provider>
-)
-
-}
-
-export {ToggleContext, ToggleProvider }
+export { ToggleContext, ToggleProvider };

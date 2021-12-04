@@ -14,7 +14,7 @@ const SideSearchBox = () => {
   const { toggleSearch } = useContext(ToggleContext);
   const {
     count,
-    filters: { title },
+    filters: { title, priceMax, priceMin },
     handleFilters,
     isLoading,
   } = useProductsContext();
@@ -23,7 +23,7 @@ const SideSearchBox = () => {
       <div className="first fl-col">
         <div className="first-a d-flex">
           <input
-            type="text"
+            type="search"
             name="title"
             placeholder="Que recherchez vous?"
             value={title}
@@ -63,25 +63,32 @@ const SideSearchBox = () => {
             <div className="s-b">
               <p>min.</p>
 
-              <p style={{ color: "#FF6E13", marginLeft: "0.2rem" }}>0 €</p>
+              <p style={{ color: "#FF6E13", marginLeft: "0.2rem" }}>
+                {priceMin} €
+              </p>
             </div>
           </div>
           <div>
             <div className="s-b">
               <p>max.</p>
               <p style={{ color: "#FF6E13", marginLeft: "0.2rem" }}>
-                15 000+ €
+                {priceMax} €
               </p>
             </div>
           </div>
         </div>
-        <div className="sub-cont">
-          <ToggleBar />
-        </div>
-        <div className="sub-cont s-b">
-          <p style={{ fontSize: "0.8rem", color: "#939ea9" }}>0€</p>
-          <p style={{ fontSize: "0.8rem", color: "#939ea9" }}>15 000 + €</p>
-        </div>
+        {/* <div className="sub-cont">
+          <input
+            type="range"
+            name="max-price"
+            min={priceMin}
+            max={priceMax}
+            value={priceMax}
+            // onChange={(event) => {
+            //   handleFilters(event);
+            // }}
+          />
+        </div> */}
       </div>
       <div className="third fl-col">
         <div className="sub-cont s-b">
