@@ -1,40 +1,34 @@
-import React, { useContext, useState } from 'react'
-import './main.css'
+import { useSelector } from 'react-redux'
+import { useState } from 'react'
 import Cookie from 'js-cookie'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Offer, Offers, Publish, SignIn, SignUp } from './containers'
-import { Footer, Header, Modal } from './components'
-import { ToggleContext } from './context/toggleContext'
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from 'react-router-dom'
+import { Offer, Offers, Publish, SignIn, SignUp, Verify } from './pages'
+import { FooterContainer, HeaderContainer } from './containers/Layout'
 
 function App() {
+  const sideBarIsOpen = useSelector((state) => state.ui.sideBarIsOpen)
+
   const token = Cookie.get('token')
   const [user, setUser] = useState({ token: token })
-  console.log(user)
-  const { modal } = useContext(ToggleContext)
 
   return (
     <Router>
-      <Header user={user} setUser={setUser} />
-      {modal && <Modal />}
-
-      <Switch>
-        <Route path='/user/sign_in'>
-          <SignIn setUser={setUser} />
-        </Route>
-        <Route path='/user/sign_up/'>
-          <SignUp setUser={setUser} />
-        </Route>
-        <Route path='/publish/'>
-          <Publish />
-        </Route>
-        <Route path='/offer/:id'>
-          <Offer />
-        </Route>
-        <Route exact path='/'>
-          <Offers />
-        </Route>
-      </Switch>
-      <Footer />
+      <HeaderContainer />
+      <Routes>
+        <Route path='/' element={<Navigate replace to='/offers' />} />
+        <Route path='/user/sign_in' element={<SignIn setUser={setUser} />} />
+        <Route path='/user/sign_up' element={<SignUp setUser={setUser} />} />
+        <Route path='/publish' element={<Publish />} />
+        <Route path='/offer/:id' element={<Offer />} />
+        <Route path='/offers' element={<Offers />} />
+        {/* <Route path='/user/verify-email' element={<Verify />} /> */}
+      </Routes>
+      <FooterContainer />
     </Router>
   )
 }

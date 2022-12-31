@@ -1,8 +1,6 @@
-/*
-=============== 
-Variables
-===============
-*/
+import { createGlobalStyle } from 'styled-components'
+export const GlobalStyles = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,700&display=swap');
 
 :root {
   /* Leboncoin color set */
@@ -16,7 +14,7 @@ Variables
   --clr-grey-3: hsl(200, 10%, 79%);
   /* 		#c4cbcf */
   --clr-grey-4: hsl(200, 16%, 96%); /* input */
-  --clr-white-1: #ffffff; /* header */
+  --clr-white: #ffffff; /* header */
   --clr-white-2: hsl(0, 100%, 100%); /* body */
   --clr-black: #1a1a1a;
 
@@ -27,12 +25,11 @@ Variables
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   --max-width: 1170px;
   --fixed-width: 620px;
+  --tabl-width: 970px,
+  /* --smar-width: 479px, */
+ 
+
 }
-/*
-=============== 
-Global Styles
-===============
-*/
 
 *,
 ::after,
@@ -42,11 +39,10 @@ Global Styles
   box-sizing: border-box;
 }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  /* background: var(--clr-grey-10); */
+  font-family: 'Open Sans', sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
   color: var(--clr-black);
-  /* line-height: 1.5; */
   line-height: 1.2rem;
   font-size: 0.875rem;
 }
@@ -59,8 +55,7 @@ a {
 h1,
 h2,
 h3 {
-  letter-spacing: var(--spacing);
-  /* text-transform: capitalize; */
+  /* letter-spacing: var(--spacing); */
   line-height: 1.25;
   margin-bottom: 0.75rem;
 }
@@ -159,7 +154,7 @@ span {
   .sign-in-section {
     height: auto;
     padding-bottom: 3rem;
-    background: url("./icons/login-illustration.png");
+    /* background: url('./icons/login-illustration.png'); */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -240,3 +235,6 @@ Debug
   background-color: #f56b2b;
   color: #f56b2b;
 }
+
+
+`

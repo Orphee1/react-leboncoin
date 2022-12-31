@@ -1,114 +1,113 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import "../main.css";
-import styled from "styled-components";
-import { Card } from "./index";
-import { ToggleContext } from "../context/toggleContext";
-import { useProductsContext } from "../context/productsContext";
-import { ImLocation, ImStarFull } from "react-icons/im";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import { Card } from './index'
+import { ToggleContext } from '../context/toggleContext'
+import { useProductsContext } from '../context/productsContext'
+import { ImLocation, ImStarFull } from 'react-icons/im'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
 const OffersSmall = () => {
-  const { toggleSearch } = useContext(ToggleContext);
-  const { count, handleSkip, isLoading, limit, offers } = useProductsContext();
+  const { toggleSearch } = useContext(ToggleContext)
+  const { count, handleSkip, isLoading, limit, offers } = useProductsContext()
   //  console.log(offers);
-  let pageNumber = count / limit;
+  let pageNumber = count / limit
   // counter required to skip pages
-  const [counter, setCounter] = React.useState(1);
+  const [counter, setCounter] = React.useState(1)
 
   React.useEffect(() => {
-    handleSkip((counter - 1) * limit);
+    handleSkip((counter - 1) * limit)
     // eslint-disable-next-line
-  }, [counter]);
+  }, [counter])
 
   return (
     <Wrapper>
-      <div className="button-container section">
-        <button className="btn">
-          <ImLocation fontSize="0.8rem" style={{ marginRight: "0.3rem" }} />
+      <div className='button-container section'>
+        <button className='btn'>
+          <ImLocation fontSize='0.8rem' style={{ marginRight: '0.3rem' }} />
           Toute la France
         </button>
-        <button className="btn" onClick={toggleSearch}>
+        <button className='btn' onClick={toggleSearch}>
           Filtres
         </button>
-        <button className="btn">Tri: Plus récentes</button>
+        <button className='btn'>Tri: Plus récentes</button>
       </div>
-      <div className="check-box-container section">
-        <div className="s-b">
-          <input type="checkbox" id="" name="" checked readOnly />
+      <div className='check-box-container section'>
+        <div className='s-b'>
+          <input type='checkbox' id='' name='' checked readOnly />
           <span>Particuliers</span>
         </div>
-        <div className="s-b">
-          <input type="checkbox" id="" name="" checked readOnly />
+        <div className='s-b'>
+          <input type='checkbox' id='' name='' checked readOnly />
           <span>Professionnels</span>
         </div>
-        <div className="s-b">
-          <input type="checkbox" id="" name="" checked readOnly />
+        <div className='s-b'>
+          <input type='checkbox' id='' name='' checked readOnly />
           <ImStarFull
-            fontSize="0.8rem"
-            style={{ color: "#FF6E13", marginRight: "1rem" }}
+            fontSize='0.8rem'
+            style={{ color: '#FF6E13', marginRight: '1rem' }}
           />
-          <span style={{ color: "#FF6E13" }}>Urgentes</span>
+          <span style={{ color: '#FF6E13' }}>Urgentes</span>
         </div>
       </div>
-      <div className="offers-container section">
+      <div className='offers-container section'>
         <h3>Annonces: Toute la France</h3>
         {isLoading ? (
-          <div className="card-container">
+          <div className='card-container'>
             <p>Loading...</p>
           </div>
         ) : (
-          <div className="card-container">
+          <div className='card-container'>
             {offers.map((offer) => {
               return (
                 <Link
                   to={`/offer/${offer._id}`}
                   key={offer._id}
-                  style={{ width: "100%" }}
+                  style={{ width: '100%' }}
                 >
                   <Card {...offer} />
                 </Link>
-              );
+              )
             })}
           </div>
         )}
-        <div className="bottom-container s-b">
+        <div className='bottom-container s-b'>
           <button
-            className="btn"
+            className='btn'
             onClick={() => {
               if (counter > 1) {
               }
-              setCounter(counter - 1);
+              setCounter(counter - 1)
             }}
           >
-            <FaChevronLeft fontSize="1.5rem" style={{ color: "#939ea9" }} />
+            <FaChevronLeft fontSize='1.5rem' style={{ color: '#939ea9' }} />
           </button>
           <input
-            type="number"
+            type='number'
             placeholder={counter}
             value={counter}
             onChange={(event) => {
-              setCounter(event.target.value);
+              setCounter(event.target.value)
             }}
-          />{" "}
+          />{' '}
           /{!isLoading && <span>{Math.ceil(pageNumber)}</span>}
           <button
-            className="btn"
+            className='btn'
             onClick={() => {
               if (counter < pageNumber) {
-                setCounter(counter + 1);
+                setCounter(counter + 1)
               }
             }}
           >
-            <FaChevronRight fontSize="1.5rem" style={{ color: "#939ea9" }} />
+            <FaChevronRight fontSize='1.5rem' style={{ color: '#939ea9' }} />
           </button>
         </div>
       </div>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default OffersSmall;
+export default OffersSmall
 
 const Wrapper = styled.section`
   display: grid;
@@ -183,4 +182,4 @@ const Wrapper = styled.section`
       color: var(--clr-grey-2);
     }
   }
-`;
+`

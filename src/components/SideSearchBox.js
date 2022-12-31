@@ -1,77 +1,76 @@
-import React, { useContext } from "react";
-import { ToggleBar } from "./index";
-import "../main.css";
-import styled from "styled-components";
-import { FaChevronRight } from "react-icons/fa";
-import { GiMagnifyingGlass } from "react-icons/gi";
-import { BsListCheck } from "react-icons/bs";
-import { AiFillPlusCircle } from "react-icons/ai";
-import { useProductsContext } from "../context/productsContext";
-import { ToggleContext } from "../context/toggleContext";
-import options from "../constants/selectOptions";
+import React, { useContext } from 'react'
+import { ToggleBar } from './index'
+import styled from 'styled-components'
+import { FaChevronRight } from 'react-icons/fa'
+import { GiMagnifyingGlass } from 'react-icons/gi'
+import { BsListCheck } from 'react-icons/bs'
+import { AiFillPlusCircle } from 'react-icons/ai'
+import { useProductsContext } from '../context/productsContext'
+import { ToggleContext } from '../context/toggleContext'
+import options from '../constants/selectOptions'
 
 const SideSearchBox = () => {
-  const { toggleSearch } = useContext(ToggleContext);
+  const { toggleSearch } = useContext(ToggleContext)
   const {
     count,
     filters: { title, priceMax, priceMin },
     handleFilters,
     isLoading,
-  } = useProductsContext();
+  } = useProductsContext()
   return (
     <Wrapper>
-      <div className="first fl-col">
-        <div className="first-a d-flex">
+      <div className='first fl-col'>
+        <div className='first-a d-flex'>
           <input
-            type="search"
-            name="title"
-            placeholder="Que recherchez vous?"
+            type='search'
+            name='title'
+            placeholder='Que recherchez vous?'
             value={title}
             onChange={(event) => {
               //       setTitle(event.target.value);
-              handleFilters(event);
+              handleFilters(event)
             }}
           ></input>
-          <GiMagnifyingGlass fontSize="1.5rem" style={{ color: "#939ea9" }} />
+          <GiMagnifyingGlass fontSize='1.5rem' style={{ color: '#939ea9' }} />
         </div>
-        <div className="first-b d-flex">
-          <div className="s-b" style={{ width: "90%" }}>
-            <div className="selecter d-flex">
-              <BsListCheck fontSize="1.5rem" style={{ marginRight: "1rem" }} />
+        <div className='first-b d-flex'>
+          <div className='s-b' style={{ width: '90%' }}>
+            <div className='selecter d-flex'>
+              <BsListCheck fontSize='1.5rem' style={{ marginRight: '1rem' }} />
               <select
-                id="category"
-                name="category"
+                id='category'
+                name='category'
                 onChange={(event) => {
                   //   setCategory(event.target.value);
-                  handleFilters(event);
+                  handleFilters(event)
                 }}
               >
                 {options}
               </select>
             </div>
-            <FaChevronRight fontSize="1.5rem" style={{ color: "#939ea9" }} />
+            <FaChevronRight fontSize='1.5rem' style={{ color: '#939ea9' }} />
           </div>
         </div>
       </div>
-      <div className="fl-col second">
-        <div className="sub-cont s-b">
-          <p style={{ fontWeight: "bold" }}>Prix</p>
-          <p style={{ color: "#4183D7", fontWeight: "bold" }}>Effacer</p>
+      <div className='fl-col second'>
+        <div className='sub-cont s-b'>
+          <p style={{ fontWeight: 'bold' }}>Prix</p>
+          <p style={{ color: '#4183D7', fontWeight: 'bold' }}>Effacer</p>
         </div>
-        <div className="sub-cont left">
-          <div style={{ marginRight: "2rem" }}>
-            <div className="s-b">
+        <div className='sub-cont left'>
+          <div style={{ marginRight: '2rem' }}>
+            <div className='s-b'>
               <p>min.</p>
 
-              <p style={{ color: "#FF6E13", marginLeft: "0.2rem" }}>
+              <p style={{ color: '#FF6E13', marginLeft: '0.2rem' }}>
                 {priceMin} €
               </p>
             </div>
           </div>
           <div>
-            <div className="s-b">
+            <div className='s-b'>
               <p>max.</p>
-              <p style={{ color: "#FF6E13", marginLeft: "0.2rem" }}>
+              <p style={{ color: '#FF6E13', marginLeft: '0.2rem' }}>
                 {priceMax} €
               </p>
             </div>
@@ -90,53 +89,53 @@ const SideSearchBox = () => {
           />
         </div> */}
       </div>
-      <div className="third fl-col">
-        <div className="sub-cont s-b">
-          <p style={{ fontWeight: "bold" }}>Où</p>
-          <p style={{ color: "#4183D7", fontWeight: "bold" }}>Effacer</p>
+      <div className='third fl-col'>
+        <div className='sub-cont s-b'>
+          <p style={{ fontWeight: 'bold' }}>Où</p>
+          <p style={{ color: '#4183D7', fontWeight: 'bold' }}>Effacer</p>
         </div>
-        <div className="sub-cont">
-          <button className="btn">
+        <div className='sub-cont'>
+          <button className='btn'>
             <AiFillPlusCircle
-              fontSize="1rem"
-              style={{ color: "#FF6E13", marginRight: "0.3rem" }}
+              fontSize='1rem'
+              style={{ color: '#FF6E13', marginRight: '0.3rem' }}
             />
             Ajouter une localisation
           </button>
         </div>
       </div>
-      <div className="fl-col-left fourth">
-        <div className="sub-cont">
+      <div className='fl-col-left fourth'>
+        <div className='sub-cont'>
           <p>Voir également les annonces disponibles en livraison</p>
         </div>
       </div>
-      <div className="fl-col-left fifth">
-        <div className="sub-cont left">
-          <p style={{ fontWeight: "bold" }}>Type d'annonces</p>
+      <div className='fl-col-left fifth'>
+        <div className='sub-cont left'>
+          <p style={{ fontWeight: 'bold' }}>Type d'annonces</p>
         </div>
-        <div className="sub-cont left">
-          <div className="s-b">
-            <div className="s-b" style={{ marginRight: "2rem" }}>
-              <input type="checkbox" id="" name="" value="" />
+        <div className='sub-cont left'>
+          <div className='s-b'>
+            <div className='s-b' style={{ marginRight: '2rem' }}>
+              <input type='checkbox' id='' name='' value='' />
               <p>Offres</p>
             </div>
-            <div className="s-b">
-              <input type="checkbox" id="" name="" value="" />
+            <div className='s-b'>
+              <input type='checkbox' id='' name='' value='' />
               <p>Demandes</p>
             </div>
           </div>
         </div>
       </div>
       <footer>
-        <button className="btn" onClick={toggleSearch}>
+        <button className='btn' onClick={toggleSearch}>
           Rechercher {!isLoading && `${count}  résultats`}
         </button>
       </footer>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default SideSearchBox;
+export default SideSearchBox
 
 const Wrapper = styled.section`
   display: grid;
@@ -244,4 +243,4 @@ const Wrapper = styled.section`
       padding: 0.6rem 0;
     }
   }
-`;
+`

@@ -1,9 +1,8 @@
-import React from "react";
-import "../main.css";
-import styled from "styled-components";
-import { FaChevronRight, FaRegClock } from "react-icons/fa";
-import { BiHeart } from "react-icons/bi";
-import user from "../icons/user.png";
+import React from 'react'
+import styled from 'styled-components'
+import { FaChevronRight, FaRegClock } from 'react-icons/fa'
+import { BiHeart } from 'react-icons/bi'
+// import user from '../icons/user.png'
 
 const BigCard = ({ offer, number }) => {
   // console.log(offer);
@@ -17,82 +16,82 @@ const BigCard = ({ offer, number }) => {
     pictures,
     price,
     title,
-  } = offer;
+  } = offer
   return (
     <Wrapper>
-      <section className="main fl-col">
-        <div className="img-container">
+      <section className='main fl-col'>
+        <div className='img-container'>
           <img src={pictures} alt={title} />
-          <div className="heart d-flex">
-            <BiHeart fontSize="1.5rem" />
+          <div className='heart d-flex'>
+            <BiHeart fontSize='1.5rem' />
           </div>
         </div>
-        <div className="title fl-col-left">
-          <div className="s-b" style={{ width: "100%" }}>
+        <div className='title fl-col-left'>
+          <div className='s-b' style={{ width: '100%' }}>
             <h3>{title}</h3>
-            <div className="heart975 d-flex">
-              <BiHeart fontSize="1.5rem" />
+            <div className='heart975 d-flex'>
+              <BiHeart fontSize='1.5rem' />
             </div>
           </div>
-          <h4 style={{ color: "#FF6E13" }}>{price} €</h4>
+          <h4 style={{ color: '#FF6E13' }}>{price} €</h4>
           <p>{created}</p>
         </div>
       </section>
-      <div className="description975">
+      <div className='description975'>
         <h4>Description</h4>
         <p>{description}</p>
       </div>
-      <aside className="seller975 fl-col">
-        <div className=" first s-b">
-          <div className="s-b">
-            <img src={user} alt="icon-user" />
-            <div className="fl-col-left">
+      <aside className='seller975 fl-col'>
+        <div className=' first s-b'>
+          <div className='s-b'>
+            {/* <img src={user} alt="icon-user" /> */}
+            <div className='fl-col-left'>
               <h4>{creator}</h4>
 
               {number > 1 ? <p>{number} annonces</p> : <p>{number} annonce</p>}
             </div>
           </div>
-          <FaChevronRight fontSize="1.3rem" style={{ color: "#939ea9" }} />
+          <FaChevronRight fontSize='1.3rem' style={{ color: '#939ea9' }} />
         </div>
-        <div className="left full-width" style={{ marginTop: "1rem" }}>
+        <div className='left full-width' style={{ marginTop: '1rem' }}>
           <FaRegClock
-            fontSize="1.2rem"
-            style={{ color: "#939ea9", marginRight: "0.5rem" }}
+            fontSize='1.2rem'
+            style={{ color: '#939ea9', marginRight: '0.5rem' }}
           />
-          <p style={{ fontSize: "0.8rem" }}>
+          <p style={{ fontSize: '0.8rem' }}>
             Répond généralement en une journée
           </p>
         </div>
-        <button className="btn">Faire une offre</button>
-        <button className="btn">Envoyer un message</button>
+        <button className='btn'>Faire une offre</button>
+        <button className='btn'>Envoyer un message</button>
       </aside>
-      <section className="second-container">
-        <button className="btn">Faire une offre</button>
-        <div className="seller s-b">
-          <div className="s-b">
-            <img src={user} alt="icon-user" />
-            <div className="fl-col-left">
+      <section className='second-container'>
+        <button className='btn'>Faire une offre</button>
+        <div className='seller s-b'>
+          <div className='s-b'>
+            {/* <img src={user} alt='icon-user' /> */}
+            <div className='fl-col-left'>
               <h4>{creator}</h4>
 
               {number > 1 ? <p>{number} annonces</p> : <p>{number} annonce</p>}
             </div>
           </div>
-          <FaChevronRight fontSize="1.3rem" style={{ color: "#939ea9" }} />
+          <FaChevronRight fontSize='1.3rem' style={{ color: '#939ea9' }} />
         </div>
-        <div className="description fl-col-left">
+        <div className='description fl-col-left'>
           <h4>Description</h4>
           <p>{description}</p>
         </div>
       </section>
-      <footer className="footer full-width d-flex blue">
-        <button className="btn">Contacter</button>
-        <button className="btn">Faire une offre</button>
+      <footer className='footer full-width d-flex blue'>
+        <button className='btn'>Contacter</button>
+        <button className='btn'>Faire une offre</button>
       </footer>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default BigCard;
+export default BigCard
 
 const Wrapper = styled.article`
   display: grid;
@@ -290,4 +289,4 @@ const Wrapper = styled.article`
       display: none;
     }
   }
-`;
+`

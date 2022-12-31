@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react'
 import Axios from 'axios'
 import reducer from '../reducers/products_reducer'
-const products_url = 'http://localhost:5000/api/v1/offers/with-count/'
-// "https://leboncoinhl.herokuapp.com/api/v1/offers/with-count/";
+
+const products_url =
+  process.env.REACT_APP_WEBADDRESS + '/api/v1/offers/with-count/'
 
 const initialState = {
   offers: [],
@@ -63,7 +64,7 @@ export const ProductsProvider = ({ children }) => {
     dispatch({ type: 'GET_SINGLE_OFFER_BEGIN' })
     try {
       const response = await Axios.get(url)
-      // console.log(response);
+      console.log(response)
       if (response.data) {
         const offer = response.data[0]
         const vendor_offers = response.data[1]

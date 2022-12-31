@@ -1,92 +1,91 @@
-import React from "react";
-import "../main.css";
-import styled from "styled-components";
-import options from "../constants/selectOptions";
-import { BsListCheck } from "react-icons/bs";
-import { GiMagnifyingGlass } from "react-icons/gi";
-import { optionMin, optionMax } from "../constants/priceOptions";
-import { useProductsContext } from "../context/productsContext";
+import React from 'react'
+import styled from 'styled-components'
+import options from '../constants/selectOptions'
+import { BsListCheck } from 'react-icons/bs'
+import { GiMagnifyingGlass } from 'react-icons/gi'
+import { optionMin, optionMax } from '../constants/priceOptions'
+import { useProductsContext } from '../context/productsContext'
 
 const Searchbox = ({}) => {
   const {
     clearFilters,
     filters: { title },
     handleFilters,
-  } = useProductsContext();
+  } = useProductsContext()
 
   return (
     <Wrapper>
-      <div className="container fl-col-left">
-        <div className="top d-flex">
-          <div className="selecter d-flex">
+      <div className='container fl-col-left'>
+        <div className='top d-flex'>
+          <div className='selecter d-flex'>
             <BsListCheck
-              fontSize="2rem"
-              style={{ color: "#939ea9", marginRight: "0.5rem" }}
+              fontSize='2rem'
+              style={{ color: '#939ea9', marginRight: '0.5rem' }}
             />
             <select
-              name="category"
+              name='category'
               onChange={(event) => {
-                handleFilters(event);
+                handleFilters(event)
               }}
             >
               {options}
             </select>
           </div>
-          <div className="input-container d-flex">
+          <div className='input-container d-flex'>
             <GiMagnifyingGlass
-              fontSize="2rem"
-              style={{ color: "#939ea9", marginRight: "0.5rem" }}
+              fontSize='2rem'
+              style={{ color: '#939ea9', marginRight: '0.5rem' }}
             />
             <input
-              type="text"
-              placeholder="Que recherchez-vous?"
-              name="title"
+              type='text'
+              placeholder='Que recherchez-vous?'
+              name='title'
               value={title}
               onChange={(event) => {
-                handleFilters(event);
+                handleFilters(event)
               }}
             />
           </div>
         </div>
-        <div className="bottom s-b">
-          <div className="d-flex">
+        <div className='bottom s-b'>
+          <div className='d-flex'>
             <p>Prix minimum:</p>
             <select
-              className="price-min"
-              name="priceMin"
-              id="priceMin"
+              className='price-min'
+              name='priceMin'
+              id='priceMin'
               onChange={(event) => {
-                handleFilters(event);
+                handleFilters(event)
               }}
             >
               {optionMin}
             </select>
             <span>€</span>
           </div>
-          <div className="d-flex">
+          <div className='d-flex'>
             <p>Prix maximum:</p>
             <select
-              className="price-min"
-              name="priceMax"
-              id="priceMax"
+              className='price-min'
+              name='priceMax'
+              id='priceMax'
               onChange={(event) => {
-                handleFilters(event);
+                handleFilters(event)
               }}
             >
               {optionMax}
             </select>
             <span>€</span>
           </div>
-          <button type="button" className="clear-btn" onClick={clearFilters}>
+          <button type='button' className='clear-btn' onClick={clearFilters}>
             clear filters
           </button>
         </div>
       </div>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default Searchbox;
+export default Searchbox
 
 const Wrapper = styled.div`
   width: 900px;
@@ -171,4 +170,4 @@ const Wrapper = styled.div`
     border-radius: var(--radius);
     background: hsl(200, 16%, 96%);
   }
-`;
+`
