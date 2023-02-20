@@ -4,15 +4,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchSingleOffer } from '../store/offers-actions'
 import styled from 'styled-components'
 // import { BigCard, Card } from '../components'
-import { CardContainer } from '../containers/UI'
+import { OfferContainer } from '../containers/UI'
 
 const Offer = () => {
   const { id } = useParams()
   // console.log(id)
   const dispatch = useDispatch()
   const { isLoading, isError } = useSelector((state) => state.ui)
-  const { singleOffer: offer } = useSelector((state) => state.offers)
-  // console.log(singleOffer)
+  const { singleOffer: offer, vendorOffers } = useSelector(
+    (state) => state.offers
+  )
+  // console.log(vendorOffers)
 
   useEffect(() => {
     dispatch(fetchSingleOffer(id))
@@ -32,11 +34,7 @@ const Offer = () => {
       <section className='container'>
         {isError && <h4>Sorry, something went wrong...</h4>}
         {isLoading && <h4>Loading...</h4>}
-        <CardContainer offer={offer} />
-        {/* <article>
-          <h3>{singleOffer.name}</h3>
-          <img src={singleOffer.image} alt={singleOffer.name} />
-        </article> */}
+        <OfferContainer offer={offer} num={vendorOffers} />
       </section>
     </Wrapper>
   )
@@ -45,7 +43,7 @@ const Offer = () => {
 export default Offer
 
 const Wrapper = styled.main`
-  min-height: calc(100vh - 4rem);
+  min-height: calc(100vh);
   background: var(--clr-white);
   display: flex;
   justify-content: center;
@@ -56,20 +54,10 @@ const Wrapper = styled.main`
     width: 90%;
     margin: 0 auto;
   }
-  article {
-    height: 300px;
-    width: 400px;
-    margin: 5px;
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    img {
+
+  @media screen and (max-width: ${({ theme }) => theme.tablet}) {
+    .container {
       width: 100%;
-      object-fit: cover;
     }
   }
 `

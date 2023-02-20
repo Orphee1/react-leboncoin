@@ -67,6 +67,7 @@ export const Center = styled.section`
 
 export const HambMenu = styled.div`
   margin-left: 10px;
+  cursor: pointer;
   svg {
     font-size: 2rem;
     color: var(--clr-orange);

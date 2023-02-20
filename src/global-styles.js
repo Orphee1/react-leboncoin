@@ -20,7 +20,7 @@ export const GlobalStyles = createGlobalStyle`
 
   --transition: all 0.3s linear;
   --spacing: 0.05rem;
-  --radius: 0.25rem;
+  --radius: 0.35rem;
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   --max-width: 1170px;
