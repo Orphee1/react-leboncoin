@@ -6,12 +6,12 @@ import {
   Route,
   Routes,
 } from 'react-router-dom'
-import { Offer, Offers, Publish, SignIn, SignUp, Verify } from './pages'
+import { Offer, Offers, Publish, SignIn, SignUp } from './pages'
 import { Layout } from './containers/Layout/layout'
 
 function App() {
   const token = Cookie.get('token')
-  const [user, setUser] = useState({ token: token })
+  const [setUser] = useState({ token: token })
 
   return (
     <Router>

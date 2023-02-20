@@ -1,9 +1,8 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import useHttp from '../hooks/use-http'
-import Axios from 'axios'
-import Cookie from 'js-cookie'
+// import Axios from 'axios'
+// import Cookie from 'js-cookie'
 import styled from 'styled-components'
-import options from '../constants/selectOptions'
 import { products } from '../constants/data'
 const product = products[0]
 
@@ -17,7 +16,7 @@ const publishOfferConfig = {
 }
 
 const Publish = () => {
-  const [isLoading, setIsLoading] = useState(false)
+  // const [setIsLoading] = useState(false)
 
   const handleResult = (result) => {
     console.log(result)
@@ -25,49 +24,49 @@ const Publish = () => {
 
   const { sendRequest: publishOffer } = useHttp(handleResult)
 
-  const [offer, setOffer] = useState({
-    title: '',
-    category: '',
-    price: 0,
-    description: '',
-    location: '',
-    file: null,
-  })
+  // const [offer] = useState({
+  //   title: '',
+  //   category: '',
+  //   price: 0,
+  //   description: '',
+  //   location: '',
+  //   file: null,
+  // })
 
-  const token = Cookie.get('token')
+  // const token = Cookie.get('token')
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsLoading(true)
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+  //   setIsLoading(true)
 
-    const formData = new FormData()
-    formData.append('title', offer.title)
-    formData.append('category', offer.category)
-    formData.append('price', offer.price)
-    formData.append('description', offer.description)
-    formData.append('location', offer.location)
-    formData.append('pictures', offer.file)
+  //   const formData = new FormData()
+  //   formData.append('title', offer.title)
+  //   formData.append('category', offer.category)
+  //   formData.append('price', offer.price)
+  //   formData.append('description', offer.description)
+  //   formData.append('location', offer.location)
+  //   formData.append('pictures', offer.file)
 
-    try {
-      const response = await Axios.post(
-        process.env.REACT_APP_WEBADDRESS + '/api/v1/offer',
-        formData,
-        {
-          headers: {
-            Authorization: 'Bearer ' + token,
-            'Content-Type': 'multipart/form-data',
-          },
-        }
-      )
-      console.log(response)
-      setIsLoading(false)
-      // history.push('/')
-    } catch (error) {
-      console.log(error)
-      alert('An error occurred sending product')
-      setIsLoading(false)
-    }
-  }
+  //   try {
+  //     const response = await Axios.post(
+  //       process.env.REACT_APP_WEBADDRESS + '/api/v1/offer',
+  //       formData,
+  //       {
+  //         headers: {
+  //           Authorization: 'Bearer ' + token,
+  //           'Content-Type': 'multipart/form-data',
+  //         },
+  //       }
+  //     )
+  //     console.log(response)
+  //     setIsLoading(false)
+  //     // history.push('/')
+  //   } catch (error) {
+  //     console.log(error)
+  //     alert('An error occurred sending product')
+  //     setIsLoading(false)
+  //   }
+  // }
 
   // const addProductHandler = async () => {
   //   console.log('fired')

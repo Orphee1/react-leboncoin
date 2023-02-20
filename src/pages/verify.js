@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+// import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 const VerifyPage = () => {
   // const [error, setError] = useState(false)

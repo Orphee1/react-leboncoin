@@ -1,4 +1,4 @@
-import { BigCard, Button } from '../../components'
+import { BigCard } from '../../components'
 
 export const OfferContainer = ({ offer, num }) => {
   console.log(offer)

@@ -3,7 +3,6 @@ import { ImCoinEuro } from 'react-icons/im'
 import { BiLock } from 'react-icons/bi'
 import { GoSmiley } from 'react-icons/go'
 import { AiOutlineClockCircle, AiOutlineArrowLeft } from 'react-icons/ai'
-import { BsArrowLeftCircle } from 'react-icons/bs'
 
 import { Button } from '../Button'
 

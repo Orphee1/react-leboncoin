@@ -1,5 +1,4 @@
 import { Box, Container, Input, Selecter, Text } from './styles/searchBox'
-import options from '../../constants/selectOptions'
 
 export const SearchBox = ({ children }) => {
   return <Container>{children}</Container>

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import Axios from 'axios'
-import Cookies from 'js-cookie'
+import React from 'react'
+// import Axios from 'axios'
+// import Cookies from 'js-cookie'
 import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'

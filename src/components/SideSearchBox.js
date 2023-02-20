@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ToggleBar } from './index'
+
 import styled from 'styled-components'
 import { FaChevronRight } from 'react-icons/fa'
 import { GiMagnifyingGlass } from 'react-icons/gi'

@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import Axios from 'axios'
-import Cookie from 'js-cookie'
+import React from 'react'
+// import Axios from 'axios'
+// import Cookie from 'js-cookie'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const SignIn = ({ setUser }) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+  // const [email, setEmail] = useState('')
+  // const [password, setPassword] = useState('')
+  // const [isLoading, setIsLoading] = useState(false)
 
   return (
     <Wrapper>
