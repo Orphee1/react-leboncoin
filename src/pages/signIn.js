@@ -1,8 +1,10 @@
 import React from 'react'
 // import Axios from 'axios'
 // import Cookie from 'js-cookie'
-import { Link } from 'react-router-dom'
+
 import styled from 'styled-components'
+import img from '../images/login-illustration.png'
+import { FormContainer } from '../containers/UI/form'
 
 const SignIn = ({ setUser }) => {
   // const [email, setEmail] = useState('')
@@ -11,10 +13,7 @@ const SignIn = ({ setUser }) => {
 
   return (
     <Wrapper>
-      <h1>Hello from Sign In Page</h1>
-      <Link to='/user/sign_up'>
-        <span>Créer un compte</span>
-      </Link>
+      <FormContainer />
     </Wrapper>
   )
 }
@@ -24,6 +23,10 @@ export default SignIn
 const Wrapper = styled.main`
   min-height: calc(100vh - 4rem);
   display: flex;
+  background-image: url(${img});
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
   flex-direction: column;
   justify-content: center;
   align-items: center;

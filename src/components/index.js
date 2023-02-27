@@ -3,12 +3,11 @@ import { Button } from './Button'
 import { Card } from './card/index'
 import Error from './Error'
 import { Footer } from './footer/index'
+import { Form } from './form/index'
 import { Header } from './header/index'
 import Modal from './Modal'
 import { OffersBox } from './offers/index'
-
 import { SearchBox } from './searchBox/index'
-// import SearchBox from './SearchBox'
 import { SideBar } from './sidebar/index'
 import SideSearchBox from './SideSearchBox'
 import { SkipButton } from './skipButton'
@@ -20,6 +19,7 @@ export {
   Card,
   Error,
   Footer,
+  Form,
   Header,
   Modal,
   OffersBox,
