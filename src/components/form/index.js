@@ -34,7 +34,12 @@ Form.BoxRelative = ({ children, ...restProps }) => {
 }
 
 Form.Button = ({ children, ...restProps }) => {
-  return <Button {...restProps}> {children} </Button>
+  return (
+    <Button {...restProps} type='submit'>
+      {' '}
+      {children}{' '}
+    </Button>
+  )
 }
 
 Form.ButtonShow = ({ ...restProps }) => {

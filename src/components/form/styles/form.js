@@ -37,6 +37,7 @@ export const Button = styled.button`
   border: none;
   border-radius: var(--radius);
   outline: none;
+  cursor: ${({ cursor }) => cursor};
   &:hover {
     background-color: #336699;
   }
@@ -72,6 +73,7 @@ export const Label = styled.label`
 export const Text = styled.span`
   font-size: ${({ small }) => small && '0.75rem'};
   color: ${({ color }) => color};
+  margin-right: ${({ mr }) => mr && '10px'};
 `
 export const Title = styled.h3`
   margin-bottom: 1rem;

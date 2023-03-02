@@ -1,34 +1,36 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Form } from '../../components'
+import { useInput } from '../../hooks/use-input'
 
 export const FormContainer = () => {
-  const [enteredEmail, setEnteredEmail] = useState('')
-  const [enteredPassword, setEnteredPassword] = useState('')
-  const [enteredEmailIsValid, setEnteredEmailIsValid] = useState(true)
+  const {
+    value: emailValue,
+    valueIsValid: emailValueIsValid,
+    inputHasError: emailInputHasError,
+    valueChangeHandler: mailChangeHandler,
+    inputBlurHandler: mailBlurHandler,
+    reset: resetEmail,
+  } = useInput((value) => value.trim() !== '')
 
-  const mailInputChangeHandler = (event) => {
-    setEnteredEmail(event.target.value)
-    setEnteredEmailIsValid(true)
-  }
+  const {
+    value: passwordValue,
+    valueIsValid: passwordValueIsValid,
+    inputHasError: passwordInputHasError,
+    valueChangeHandler: passwordChangeHandler,
+    inputBlurHandler: passwordBlurHandler,
+    reset: resetPassword,
+  } = useInput((value) => value.trim() !== '')
 
-  const passwordInputChangeHandler = (event) => {
-    setEnteredPassword(event.target.value)
-  }
+  const formIsValid = emailValueIsValid && passwordValueIsValid
 
   const formSubmissionHandler = (event) => {
     event.preventDefault()
-
-    if (enteredEmail.trim() === '') {
-      setEnteredEmailIsValid(false)
+    if (!formIsValid) {
       return
     }
 
-    setEnteredEmailIsValid(true)
-
-    console.log(enteredEmail, enteredPassword)
-    setEnteredEmail('')
-    setEnteredPassword('')
+    resetEmail()
+    resetPassword()
   }
 
   return (
@@ -51,12 +53,13 @@ export const FormContainer = () => {
           type='email'
           name='email'
           border={`${
-            enteredEmailIsValid ? '1px solid #c4cbcf ' : '1px solid #FF6E13'
+            emailInputHasError ? '1px solid #FF6E13' : '1px solid #c4cbcf '
           }`}
-          value={enteredEmail}
-          onChange={mailInputChangeHandler}
+          value={emailValue}
+          onChange={mailChangeHandler}
+          onBlur={mailBlurHandler}
         />
-        {!enteredEmailIsValid && (
+        {emailInputHasError && (
           <Form.Text small color='red'>
             champ requis
           </Form.Text>
@@ -75,16 +78,28 @@ export const FormContainer = () => {
             type='password'
             name='password'
             border={`${
-              enteredEmailIsValid ? '1px solid #c4cbcf ' : '1px solid #FF6E13'
+              passwordInputHasError ? '1px solid #FF6E13' : '1px solid #c4cbcf '
             }`}
-            value={enteredPassword}
-            onChange={passwordInputChangeHandler}
+            value={passwordValue}
+            onChange={passwordChangeHandler}
+            onBlur={passwordBlurHandler}
           />
           <Form.ButtonShow />
         </Form.BoxRelative>
-        <Form.Text color='#4183D7'>Mot de passe oublié</Form.Text>
+
+        <Form.Text color='#4183D7' mr>
+          Mot de passe oublié
+        </Form.Text>
+        {passwordInputHasError && (
+          <Form.Text small color='red'>
+            champ requis
+          </Form.Text>
+        )}
       </Form.Box>
-      <Form.Button>Se connecter</Form.Button>
+
+      <Form.Button cursor={`${formIsValid ? 'pointer' : 'not-allowed'}`}>
+        Se connecter
+      </Form.Button>
       <Form.BoxFlex width='70%'>
         <Form.Text>Envie de nous rejoindre?</Form.Text>
         <Link to='/user/sign_up'>
