@@ -3,10 +3,30 @@ import { Form } from '../../components'
 import { useInput } from '../../hooks/use-input'
 
 export const SignUpFormContainer = () => {
-  // const {} = useInput()
+  const {
+    value: emailValue,
+    valueIsValid: emailValueIsValid,
+    inputHasError: emailInputHasError,
+    valueChangeHandler: mailChangeHandler,
+    inputBlurHandler: mailBlurHandler,
+    reset: resetEmail,
+  } = useInput((value) => value.trim() !== '')
+
+  const {
+    value: passwordValue,
+    valueIsValid: passwordValueIsValid,
+    inputHasError: passwordInputHasError,
+    valueChangeHandler: passwordChangeHandler,
+    inputBlurHandler: passwordBlurHandler,
+    reset: resetPassword,
+  } = useInput((value) => value.trim() !== '')
+
+  const formIsValid = emailValueIsValid && passwordValueIsValid
 
   const formSubmissionHandler = (event) => {
     event.preventDefault()
+    resetEmail()
+    resetPassword()
     console.log('fired')
   }
 
@@ -30,19 +50,18 @@ export const SignUpFormContainer = () => {
           id='email'
           type='email'
           name='email'
-          border='1px solid #c4cbcf '
-          // border={`${
-          //   emailInputHasError ? '1px solid #FF6E13' : '1px solid #c4cbcf '
-          // }`}
-          // value={emailValue}
-          // onChange={mailChangeHandler}
-          // onBlur={mailBlurHandler}
+          border={`${
+            emailInputHasError ? '1px solid #FF6E13' : '1px solid #c4cbcf '
+          }`}
+          value={emailValue}
+          onChange={mailChangeHandler}
+          onBlur={mailBlurHandler}
         />
-        {/* {emailInputHasError && (
+        {emailInputHasError && (
           <Form.Text small color='red'>
             champ requis
           </Form.Text>
-        )} */}
+        )}
       </Form.Box>
       <Form.Box>
         <Form.BoxFlex>
@@ -56,26 +75,26 @@ export const SignUpFormContainer = () => {
             id='password'
             type='password'
             name='password'
-            border='1px solid #c4cbcf'
-            // border={`${
-            //   passwordInputHasError ? '1px solid #FF6E13' : '1px solid #c4cbcf '
-            // }`}
-            // value={passwordValue}
-            // onChange={passwordChangeHandler}
-            // onBlur={passwordBlurHandler}
+            border={`${
+              passwordInputHasError ? '1px solid #FF6E13' : '1px solid #c4cbcf '
+            }`}
+            value={passwordValue}
+            onChange={passwordChangeHandler}
+            onBlur={passwordBlurHandler}
           />
           <Form.ButtonShow />
         </Form.BoxRelative>
 
-        {/* {passwordInputHasError && (
+        {passwordInputHasError && (
           <Form.Text small color='red'>
             champ requis
           </Form.Text>
-        )} */}
+        )}
       </Form.Box>
 
-      {/* <Form.Button cursor={`${formIsValid ? 'pointer' : 'not-allowed'}`}> */}
-      <Form.Button cursor='pointer'>Envoyer</Form.Button>
+      <Form.Button cursor={`${formIsValid ? 'pointer' : 'not-allowed'}`}>
+        Envoyer
+      </Form.Button>
       <Form.BoxFlex width='70%'>
         <Form.Text>Vous avez déjà un compte?</Form.Text>
         <Link to='/user/sign_in'>
