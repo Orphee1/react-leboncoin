@@ -1,19 +1,12 @@
 import React from 'react'
-// import Axios from 'axios'
-// import Cookie from 'js-cookie'
-
 import styled from 'styled-components'
 import img from '../images/login-illustration.png'
-import { FormContainer } from '../containers/UI/form'
+import { SignInFormContainer } from '../containers/UI'
 
-const SignIn = ({ setUser }) => {
-  // const [email, setEmail] = useState('')
-  // const [password, setPassword] = useState('')
-  // const [isLoading, setIsLoading] = useState(false)
-
+const SignIn = () => {
   return (
     <Wrapper>
-      <FormContainer />
+      <SignInFormContainer />
     </Wrapper>
   )
 }

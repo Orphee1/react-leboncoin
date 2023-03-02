@@ -1,17 +1,12 @@
 import React from 'react'
-// import Axios from 'axios'
-// import Cookies from 'js-cookie'
-import { Link } from 'react-router-dom'
-
 import styled from 'styled-components'
+import img from '../images/login-illustration.png'
+import { SignUpFormContainer } from '../containers/UI'
 
-const SignUp = ({ setUser }) => {
+const SignUp = () => {
   return (
     <Wrapper>
-      <h1>Hello from Sign Up Page</h1>
-      <Link to='/user/sign_in'>
-        <span>Vous avez déjà un compte?</span>
-      </Link>
+      <SignUpFormContainer />
     </Wrapper>
   )
 }
@@ -21,6 +16,10 @@ export default SignUp
 const Wrapper = styled.main`
   min-height: calc(100vh - 4rem);
   display: flex;
+  background-image: url(${img});
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
   flex-direction: column;
   justify-content: center;
   align-items: center;

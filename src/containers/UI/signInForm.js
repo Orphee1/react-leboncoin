@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Form } from '../../components'
 import { useInput } from '../../hooks/use-input'
 
-export const FormContainer = () => {
+export const SignInFormContainer = () => {
   const {
     value: emailValue,
     valueIsValid: emailValueIsValid,
