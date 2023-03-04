@@ -1,8 +1,10 @@
-import { Link } from 'react-router-dom'
+import Axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
 import { Form } from '../../components'
 import { useInput } from '../../hooks/use-input'
 
 export const SignInFormContainer = () => {
+  const navigate = useNavigate()
   const {
     value: emailValue,
     valueIsValid: emailValueIsValid,
@@ -23,10 +25,31 @@ export const SignInFormContainer = () => {
 
   const formIsValid = emailValueIsValid && passwordValueIsValid
 
-  const formSubmissionHandler = (event) => {
+  const formSubmissionHandler = async (event) => {
     event.preventDefault()
     if (!formIsValid) {
       return
+    }
+
+    console.log((emailValue, passwordValue))
+
+    try {
+      const response = await Axios.post(
+        process.env.REACT_APP_WEBADDRESS + '/api/v1/user/log_in',
+        {
+          email: emailValue,
+          password: passwordValue,
+        }
+      )
+      if (response.data) {
+        console.log(response.data)
+        // store token and determine isLoggedIn status with a login function privides by redux ui slice
+        // store username
+        // redirect to='/'
+        navigate('/')
+      }
+    } catch (error) {
+      console.log(error)
     }
 
     resetEmail()

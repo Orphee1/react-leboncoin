@@ -1,8 +1,19 @@
-import { Link } from 'react-router-dom'
+import Axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
 import { Form } from '../../components'
 import { useInput } from '../../hooks/use-input'
 
 export const SignUpFormContainer = () => {
+  const navigate = useNavigate()
+  const {
+    value: nameValue,
+    valueIsValid: nameValueIsValid,
+    inputHasError: nameInputHasError,
+    valueChangeHandler: nameChangeHandler,
+    inputBlurHandler: nameBlurHandler,
+    reset: resetName,
+  } = useInput((value) => value.trim() !== '')
+
   const {
     value: emailValue,
     valueIsValid: emailValueIsValid,
@@ -21,13 +32,40 @@ export const SignUpFormContainer = () => {
     reset: resetPassword,
   } = useInput((value) => value.trim() !== '')
 
-  const formIsValid = emailValueIsValid && passwordValueIsValid
+  const formIsValid =
+    nameValueIsValid && emailValueIsValid && passwordValueIsValid
 
-  const formSubmissionHandler = (event) => {
+  const formSubmissionHandler = async (event) => {
     event.preventDefault()
+    if (!formIsValid) {
+      return
+    }
+    console.log(nameValue, emailValue, passwordValue)
+
+    try {
+      const response = await Axios.post(
+        process.env.REACT_APP_WEBADDRESS + '/api/v1/user/sign_up',
+        {
+          username: nameValue,
+          email: emailValue,
+          password: passwordValue,
+        }
+      )
+
+      if (response.data) {
+        console.log(response.data)
+        // store token and determine isLoggedIn status with a login function privides by redux ui slice
+        // store username
+        // redirect to='/'
+        navigate('/')
+      }
+    } catch (error) {
+      console.log(error)
+    }
+
+    resetName()
     resetEmail()
     resetPassword()
-    console.log('fired')
   }
 
   return (
@@ -39,6 +77,29 @@ export const SignUpFormContainer = () => {
           votre activité et vos centres d'intérêt sur notre service
         </Form.Text>
       </Form.BoxColumn>
+      <Form.Box>
+        <Form.BoxFlex>
+          <Form.Label htmlFor='name'>Nom d'utilisateur</Form.Label>
+          <Form.Text small color='#939ea9'>
+            champ requis
+          </Form.Text>
+        </Form.BoxFlex>
+        <Form.Input
+          id='name'
+          name='name'
+          border={`${
+            nameInputHasError ? '1px solid #FF6E13' : '1px solid #c4cbcf '
+          }`}
+          value={nameValue}
+          onChange={nameChangeHandler}
+          onBlur={nameBlurHandler}
+        />
+        {nameInputHasError && (
+          <Form.Text small color='red'>
+            champ requis
+          </Form.Text>
+        )}
+      </Form.Box>
       <Form.Box>
         <Form.BoxFlex>
           <Form.Label htmlFor='email'>E-mail</Form.Label>

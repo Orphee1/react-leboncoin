@@ -9,7 +9,6 @@ import Modal from './Modal'
 import { OffersBox } from './offers/index'
 import { SearchBox } from './searchBox/index'
 import { SideBar } from './sidebar/index'
-import SideSearchBox from './SideSearchBox'
 import { SkipButton } from './skipButton'
 import ToggleBar from './ToggleBar'
 import Title from './Title'
@@ -25,7 +24,6 @@ export {
   OffersBox,
   SearchBox,
   SideBar,
-  SideSearchBox,
   SkipButton,
   Title,
   ToggleBar,

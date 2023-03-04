@@ -1,21 +1,13 @@
-import React, { useContext } from 'react'
-import { ToggleContext } from '../context/toggleContext'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { ImCross } from 'react-icons/im'
 // import image from "../icons/modal-illustration.png"
 
 const Modal = () => {
-  const { setModal } = useContext(ToggleContext)
   return (
     <Wrapper>
       <section className='modal-content section fl-col-left'>
-        <button
-          className='btn'
-          onClick={() => {
-            setModal(false)
-          }}
-        >
+        <button className='btn'>
           <ImCross fontSize='2rem' style={{ color: '#939ea9' }} />
         </button>
         <h2>Déposer une annonce</h2>
@@ -29,24 +21,12 @@ const Modal = () => {
             </div>
             <div className='s-b' style={{ width: '80%' }}>
               <button className='btn'>
-                <Link
-                  to='/user/sign_in'
-                  style={{ color: 'white' }}
-                  onClick={() => {
-                    setModal(false)
-                  }}
-                >
+                <Link to='/user/sign_in' style={{ color: 'white' }}>
                   Me connecter
                 </Link>
               </button>
               <button className='btn'>
-                <Link
-                  to='/user/sign_up/'
-                  style={{ color: '#4183D7' }}
-                  onClick={() => {
-                    setModal(false)
-                  }}
-                >
+                <Link to='/user/sign_up/' style={{ color: '#4183D7' }}>
                   Créer un compte
                 </Link>
               </button>
