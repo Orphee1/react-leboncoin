@@ -1,9 +1,14 @@
 import Axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { authActions } from '../../store/auth-slice'
 import { Link, useNavigate } from 'react-router-dom'
 import { Form } from '../../components'
 import { useInput } from '../../hooks/use-input'
 
 export const SignUpFormContainer = () => {
+  const dispatch = useDispatch()
+  const { isLoggedIn } = useSelector((state) => state.auth)
+
   const navigate = useNavigate()
   const {
     value: nameValue,
@@ -40,7 +45,6 @@ export const SignUpFormContainer = () => {
     if (!formIsValid) {
       return
     }
-    console.log(nameValue, emailValue, passwordValue)
 
     try {
       const response = await Axios.post(
@@ -53,11 +57,16 @@ export const SignUpFormContainer = () => {
       )
 
       if (response.data) {
-        console.log(response.data)
-        // store token and determine isLoggedIn status with a login function privides by redux ui slice
-        // store username
-        // redirect to='/'
-        navigate('/')
+        const { username, token } = response.data
+        dispatch(
+          authActions.logIn({
+            receivedUserName: username,
+            receivedToken: token,
+          })
+        )
+        setTimeout(() => {
+          navigate('/')
+        }, 5000)
       }
     } catch (error) {
       console.log(error)
@@ -72,10 +81,18 @@ export const SignUpFormContainer = () => {
     <Form method='post' onSubmit={formSubmissionHandler}>
       <Form.BoxColumn>
         <Form.Title>Créez un compte</Form.Title>
-        <Form.Text>
-          Bénéficiez d'une expérience personnalisée avec du contenu en lien avec
-          votre activité et vos centres d'intérêt sur notre service
-        </Form.Text>
+        {isLoggedIn && (
+          <Form.Text>
+            Votre compte a été créé avec succès, vous allez être redirigé vers
+            la page d'accueil
+          </Form.Text>
+        )}
+        {!isLoggedIn && (
+          <Form.Text>
+            Bénéficiez d'une expérience personnalisée avec du contenu en lien
+            avec votre activité et vos centres d'intérêt sur notre service
+          </Form.Text>
+        )}
       </Form.BoxColumn>
       <Form.Box>
         <Form.BoxFlex>
@@ -145,7 +162,6 @@ export const SignUpFormContainer = () => {
           />
           <Form.ButtonShow />
         </Form.BoxRelative>
-
         {passwordInputHasError && (
           <Form.Text small color='red'>
             champ requis

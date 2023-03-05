@@ -1,8 +1,7 @@
 import { Header } from '../../components'
 import { NavLink } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { uiActions } from '../../store/ui-slice'
-
 // icons
 import { GoDiffAdded, GoSearch } from 'react-icons/go'
 import { BsBell } from 'react-icons/bs'
@@ -12,11 +11,14 @@ import { RiUserLine } from 'react-icons/ri'
 import { categories } from '../../constants/categories'
 
 export const HeaderContainer = () => {
+  const { isLoggedIn, userName } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
 
   const toggleSideBarHandler = () => {
     dispatch(uiActions.toggleSideBar())
   }
+
+  const showProfile = isLoggedIn && userName
 
   return (
     <Header>
@@ -69,14 +71,26 @@ export const HeaderContainer = () => {
                   Messages
                 </Header.ButtonVertical>
               </Header.ListHover>
-              <Header.ListHover hover_orange>
-                <NavLink to='/user/sign_in'>
-                  <Header.ButtonVertical>
-                    <RiUserLine />
-                    Se connecter
-                  </Header.ButtonVertical>
-                </NavLink>
-              </Header.ListHover>
+              {!showProfile && (
+                <Header.ListHover hover_orange>
+                  <NavLink to='/user/sign_in'>
+                    <Header.ButtonVertical>
+                      <RiUserLine />
+                      Se connecter
+                    </Header.ButtonVertical>
+                  </NavLink>
+                </Header.ListHover>
+              )}
+              {showProfile && (
+                <Header.ListHover hover_orange>
+                  <NavLink to='/profile'>
+                    <Header.ButtonVertical>
+                      <RiUserLine />
+                      {userName}
+                    </Header.ButtonVertical>
+                  </NavLink>
+                </Header.ListHover>
+              )}
             </Header.Box>
           </Header.List>
         </Header.Row>

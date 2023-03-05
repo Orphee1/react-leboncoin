@@ -15,7 +15,7 @@ const uiSlice = createSlice({
       state.sideBarIsOpen = !state.sideBarIsOpen
     },
     toggleModal(state) {
-      state.ModalIsOpen = !state.ModalIsOpen
+      state.modalIsOpen = !state.modalIsOpen
     },
     handleIsLoading(state, action) {
       state.isLoading = action.payload.status
